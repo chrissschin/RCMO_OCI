@@ -1,0 +1,39 @@
+
+        <form id="main" class="root_element border_bottom_radius" method="POST">
+            <input type="hidden" name="online_check_in_step" value="_ONLINE_CHECK_IN_STEP_"/>
+            <script type="text/javascript">
+            _oci.main.validate.country='_VALIDATION_COUNTRY_';
+            _oci.main.validate.messages={
+                empty:'-TXT-VALIDATE-MSG-EMPTY-',
+                email:'-TXT-VALIDATE-MSG-EMAIL-',
+                tel:'-TXT-VALIDATE-MSG-TELEPHONE-',
+                num:'-TXT-VALIDATE-MSG-NUMBER-',
+                zip:'-TXT-VALIDATE-MSG-ZIP-',
+                usr:'-TXT-VALIDATE-MSG-USERNAME-',
+                txt:'-TXT-VALIDATE-MSG-TEXT-'
+            };
+            </script>
+            <div id="submit_curtain" class="background_shade">
+                <div class="responsive_wrapper">
+_ANIMATION_WAITING_
+                </div>
+            </div>
+            <img id="banner_top" src="media/image/banner_top_oci.jpg" alt="-TXT-IMG-BANNER-TOP-ALT-">
+            <div id="messages" class="content_MAIN_MSGS_CLASS_">
+_MAIN_MSGS_HTML_
+            </div>
+_STEP_VIEW_
+            <div id="navigation" class="_MAIN_NAV_CLASS_">
+                <div id="main_nav_validation_message" class="border_error color_error not_displayed">-TXT-VALIDATE-MSG-PLEASE-CORRECT-</div>
+                <div id="main_nav_previous" class="_MAIN_NAV_PREVIOUS_CLASS_">
+                    <input id="previous" class="submit" type="button" value="-TXT-SUBMIT-PREVIOUS-" onclick="_oci.main.submit('main',this);"/>
+                </div>
+<!--                <div id="main_nav_skip" class="_MAIN_NAV_PREVIOUS_CLASS_">
+                    <input id="skip" class="submit" type="button" value="-TXT-SUBMIT-SKIP-" onclick="_oci.main.submit('main',this);"/>
+                </div>-->
+                <div id="main_nav_next" class="_MAIN_NAV_NEXT_CLASS_">
+                    <input id="next" class="submit" type="button" value="-TXT-SUBMIT-NEXT-" onclick="_oci.main.submit('main',this);" data-oci-main-form="validate"/>
+                </div>
+                <img id="banner_bottom" src="media/image/banner_bottom_oci.jpg" alt="-TXT-IMG-BANNER-BOTTOM-ALT-">
+            </div>
+        </form>

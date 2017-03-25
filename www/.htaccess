@@ -1,0 +1,3 @@
+Options -Indexes
+AddHandler application/x-httpd-php54 .php
+DirectoryIndex index.php index.html default.php default.html home.php home.html

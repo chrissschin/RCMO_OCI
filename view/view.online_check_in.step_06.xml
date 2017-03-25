@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 28 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_06:
+ * Safety Video (*.html view companion file)
+ *-->
+
+<step id="06">
+    <page_title>
+        <english><![CDATA[Safety Quiz]]></english>
+        <french><![CDATA[]]></french>
+    </page_title>
+    <text>
+        <english><![CDATA[Safety Video]]></english>
+        <french><![CDATA[Vidéo sécurité]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Before completing Online Check-In, you are required to watch this video that outlines safety precautions and important event information you should be aware of while participating in The Ride. Are you an experienced Rider? We are looking for Riders like you to join our Rider Safety Team! These leaders will help us maintain the rules of the road and ensure that cycling etiquette is upheld throughout the event. Members of the Rider Safety Team still take part in all of the fun of The Ride—but just keep an eye out for other Riders, encourage safe riding, and assist if needed. To sign up for our Rider Safety Team please call the local office at 877.699.2453!]]></english>
+        <french><![CDATA[Avant de terminer l'enregistrement en ligne , vous devez regarder cette vidéo qui décrit les mesures de sécurité et des informations d'événement important, vous devriez être au courant de tout en participant à The Ride . Êtes-vous un coureur expérimenté ? Nous recherchons des coureurs comme vous joindre à notre équipe de sécurité Rider ! Ces dirigeants nous aideront à maintenir les règles de la route et de faire en sorte que le cyclisme l'étiquette est maintenue tout au long de l'événement. Les membres de l' équipe de sécurité Rider prennent encore part à tous les plaisirs de la course , mais juste garder un œil sur les autres coureurs , encourager une conduite sûre , et aider si nécessaire. Pour vous inscrire à notre équipe de sécurité Rider s'il vous plaît appelez le bureau local au 877.699.2453 !]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Play]]></english>
+        <french><![CDATA[Jouer]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Pause]]></english>
+        <french><![CDATA[Pause]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Resume]]></english>
+        <french><![CDATA[Continuer]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Replay]]></english>
+        <french><![CDATA[Rejouer]]></french>
+    </text>
+</step>

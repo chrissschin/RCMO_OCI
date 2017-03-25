@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 28 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_02:
+ * Registration Review (*.html view companion file)
+ *-->
+
+<step id="02">
+    <page_title>
+        <english><![CDATA[Update Your Information]]></english>
+        <french><![CDATA[Mettre à jour vos informations]]></french>
+    </page_title>
+    <text>
+        <english><![CDATA[Update Your Information]]></english>
+        <french><![CDATA[Mettre à jour vos informations]]></french>
+    </text>
+    <text>
+        <english><![CDATA[To get started review your contact information below.]]></english>
+        <french><![CDATA[Pour commencer en revue votre coordonnées ci-dessous .]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Note: To change your status, call us at 877.699.2453]]></english>
+        <french><![CDATA[Remarque: Pour modifier votre statut , appelez-nous au 877.699.2453]]></french>
+    </text>
+    <text>
+        <english><![CDATA[First Name]]></english>
+        <french><![CDATA[Prénom]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Last Name]]></english>
+        <french><![CDATA[Nom de famille]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Address 1]]></english>
+        <french><![CDATA[Adresse 1]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Address 2]]></english>
+        <french><![CDATA[Adresse 2]]></french>
+    </text>
+    <text>
+        <english><![CDATA[City]]></english>
+        <french><![CDATA[Ville]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Zip Code]]></english>
+        <french><![CDATA[Code postal]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Participation Type]]></english>
+        <french><![CDATA[Type de participation]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Team Name]]></english>
+        <french><![CDATA[Nom de l'équipe]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Gender]]></english>
+        <french><![CDATA[Le genre]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Male]]></english>
+        <french><![CDATA[Homme]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Female]]></english>
+        <french><![CDATA[Femme]]></french>
+    </text>
+</step>

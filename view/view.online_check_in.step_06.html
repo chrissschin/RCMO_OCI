@@ -1,0 +1,51 @@
+
+            <div id="step_06" class="content">
+                <div class="lang_div">Language -DROPDOWN-LANGUGES-   <input type="button" style=" font-size: 10px" value="-TXT-LOG-OUT-" onclick="_oci.main.user_logout();" data-oci-main-form="validate"/></div><br>
+                <h1>-TXT-HEADER-</h1>
+                <div class="line_margin">-TXT-BEFORE-COMPLETING-</div>
+                <div id="YouTube_Container" class="line_margin responsive_wrapper">
+_ANIMATION_LOADING_
+
+                    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+                    <div id="YouTube_Player"></div>
+
+                    <script id="YouTube_Load" type="text/javascript">
+                    //   2. This code loads the IFrame Player API.
+                    //      SEE: _oci.step_06.load:function(...){...} declaration in file ./code/js/view.online_check_in.step_06.js
+
+                    //   3. This function creates an <iframe> (and YouTube player)
+                    //      after the API code downloads.
+                    function onYouTubeIframeAPIReady(){
+                        //Set labels used to show playback state
+                        _oci.step_06.YouTube.txt={
+                            play:'-TXT-BUTTON-PLAY-',
+                            pause:'-TXT-BUTTON-PAUSE-',
+                            resume:'-TXT-BUTTON-RESUME-',
+                            replay:'-TXT-BUTTON-REPLAY-'
+                        };
+
+                        //Instantiate the player
+                        _oci.step_06.YouTube.player=new YT.Player(
+                            'YouTube_Player',
+                            {
+                                videoId:'X6mg2a6oa2Y',
+                                playerVars:{
+                                    'html5':1,
+                                    'disablekb':1,
+                                    'controls':0,
+                                    'rel':0,
+                                    'autoplay':0
+                                },
+                                events:{
+                                    'onReady':_oci.step_06.YouTube.ready,
+                                    'onStateChange':_oci.step_06.YouTube.state
+                                }
+                            }
+                        );
+                    }
+                    </script>
+                </div>
+                <div id="YouTube_Action" class="line_margin">
+                    <input type="button" value="-TXT-BUTTON-PLAY-" onclick="_oci.step_06.YouTube.action(this,_oci.step_06.YouTube.player);" disabled="disabled"/>
+                </div>
+            </div>

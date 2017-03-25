@@ -1,0 +1,24 @@
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	June 6 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ */
+
+#_oci > #main > #step_06 > #YouTube_Container{
+    border: 1px solid rgba(0,0,0,1.0);
+    background: rgba(0,0,0,1.0);
+}
+
+#_oci > #main > #step_06 > #YouTube_Container iframe,
+#_oci > #main > #step_06 > #YouTube_Container object,
+#_oci > #main > #step_06 > #YouTube_Container embed{
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+}
+
+#_oci > #main > #step_06 > #YouTube_Action{
+    text-align: center;
+}

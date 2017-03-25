@@ -1,0 +1,15 @@
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	June 16 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ */
+
+#_oci > #main > #step_08{
+   border: 3px solid rgba(255,221,119,1.0);
+   background: rgba(255,255,204,1.0);
+   padding: 0% 2% 2% 2%;
+}
+
+#_oci > #main > #step_08 > #self_pledge > #status_check > tbody > tr > td:nth-child(2){
+    padding-left: 2.5%;
+}

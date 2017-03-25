@@ -1,0 +1,124 @@
+<?php
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 29 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_06:
+ * Safety Video (abstract file, not to be used by itself)
+ *
+ * Displays the safety video for the event, once watched,
+ * allows the end-user to proceed with the online check-in process
+ */
+
+/**
+ * ctrlr_online_check_in_action_step_06()	handles step_06 within the online check-in process
+ *
+ * @param	ARRAY	&$env	reference to global variable '$_app_env'
+ * @param	ARRAY	&$msgs	reference to variable '$main_msgs' where any messages are stored
+ * @param	ARRAY	&$out	reference to variable '$output' which contains content to be rendered
+ * @param	BOOLEAN	&$CRUD	specifies if the action is being called in a CReate/Update/Delete compacity
+ * @return	VOID	N/A
+ */
+function ctrlr_online_check_in_action_step_06(&$env,&$msgs,&$out,$CRUD=FALSE){
+    if($CRUD===TRUE){
+        if($env['flags']['is_CRUD']===TRUE){
+            # CReate / Update / Delete code lines
+            $env['request'][]=array(
+                'url'=>$env['API']['URL']['TR'],
+                'fields'=>array(
+                    'api_key'=>$env['API']['KEY'],
+                    'v'=>$env['API']['VER'],
+                    'method'=>'updateSurveyResponses',
+                    'fr_id'=>@$env['$_get']['fr_id'],
+                    $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                    'survey_id'=>$env['API']['SURVEY']['ID'],
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][8])=>'Yes'
+                )
+            );
+
+            //CRUD error checking
+            $usr_idx=_ctrlr_pro_curl($env,$msgs);
+            if(($env['request'][$usr_idx]['response']['sxml'] instanceof SimpleXMLElement)===FALSE ||
+               ($env['request'][$usr_idx]['response']['sxml']->getName()==='updateSurveyResponsesResponse' && strtoupper($env['request'][$usr_idx]['response']['sxml']->success)!=='TRUE')){
+                $msgs['error'][]='whoops, updating didn\'t work!!!';
+            }
+        }
+    }
+    else if($view=_ctrlr_pro_view(__FUNCTION__)){
+        # Read code lines
+        $step_06['is_view_data_retrieved']=&$env['flags']['is_view_data_retrieved'];
+
+        $env['request'][]=array(
+            'url'=>$env['API']['URL']['TR'],
+            'fields'=>array(
+                'api_key'=>$env['API']['KEY'],
+                'v'=>$env['API']['VER'],
+                'method'=>'getSurveyResponses',
+                'fr_id'=>@$env['$_get']['fr_id'],
+                $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                'survey_id'=>$env['API']['SURVEY']['ID'],
+                ('question_'.$env['API']['SURVEY']['QUESTION'][8])=>'TRUE',
+                'requested_only'=>'TRUE'
+            )
+        );
+
+        $gsr_idx=_ctrlr_pro_curl($env,$msgs);
+        if(@$env['request'][$gsr_idx]['response']['sxml'] instanceof SimpleXMLElement && $env['request'][$gsr_idx]['response']['sxml']->getName()==='getSurveyResponsesResponse'){
+            $step_06['is_view_data_retrieved']=true;
+        }
+
+        if($step_06['is_view_data_retrieved']===TRUE || $env['flags']['is_step_view_on_error']===TRUE){
+            //For XPath usage, all namespaces must have a prefix. Encase in a logic check so when debugging no error is thrown.
+            if(@$env['request'][$gsr_idx]['response']['sxml'] instanceof SimpleXMLElement){
+                ctrlr_online_check_in_pro_xpath_register_namespace($env['request'][$gsr_idx]['response']['sxml']);
+            }
+
+            //Get respective XML elements from the response
+            $step_06['safety_video_watched']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][8].'\']'):NULL);
+
+            $env['flags']['is_hiding_nav']['next']=(strtoupper(@$step_06['safety_video_watched'][0]->responseValue)!=='YES');
+
+            # Replace text placeholders with entries from the step view
+            $view['mark_up']=str_replace(
+                array(
+                    '-TXT-HEADER-',
+                    '-TXT-BEFORE-COMPLETING-',
+                    '-TXT-BUTTON-PLAY-',
+                    '-TXT-BUTTON-PAUSE-',
+                    '-TXT-BUTTON-RESUME-',
+                    '-TXT-BUTTON-REPLAY-',
+                    '-DROPDOWN-LANGUGES-'
+                ),
+                array(
+                    lng($view['sxml']->text[$t=0]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    $env['lang_select']
+                ),
+                $view['mark_up']
+            );
+
+            # Replace data placeholders with values
+            $view['mark_up']=str_replace(
+                array(
+                    (nl().'_ANIMATION_LOADING_')
+                ),
+                array(
+                    str_replace("\n",("\n".t(5)),rtrim($env['model']->animation->loading->style[0]))
+                ),
+                $view['mark_up']
+            );
+
+            //Update output to be rendered
+            $out['RPL']['page_title'].=lng($view['sxml']->page_title);
+            $out['RPL']['cascading_style_sheet'][]=$view['files']['css'];
+            $out['RPL']['javascript'][]=$view['files']['js'];
+            $out['RPL']['view']=str_replace((nl().'_STEP_VIEW_'),$view['mark_up'],$out['RPL']['view']);
+        }
+    }
+}
+?>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 28 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_09:
+ * Tent Assignment (*.html view companion file)
+ *-->
+
+<step id="09">
+    <page_title>
+        <english><![CDATA[Tent Mate Selection]]></english>
+    </page_title>
+    <text>
+        <english><![CDATA[Tent Mate Selection]]></english>
+    </text>
+    <text>
+        <english><![CDATA[A tenting request is already on file for you and is listed below. If you wish to change your tenting status, you can do so by clicking on the ' 2-day Participants Review/Update Tenting Status' button located at the end of the Online Check-In Process. You can also go to the Participant Centre and click the 'View or modify tenting information' link.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[If you will be staying at camp on Saturday night please select a tenting option below. If you select a specific tent mate you will receive a confirmation email once they have accepted your invitation to tent together.    If you would like us to assign you a tent mate or will not be staying at camp please click the appropriate button below.  Tent assignments will be emailed to you the Thursday before the event.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[If you are a member of a team that is officially registered with The Ride, you will be assigned neighboring tents with your team members who complete Online Check-In by June 3rd, 2015.  Any team members who do not complete Online Check-In by this date are not guaranteed to be tenting near their team.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Need help? If you are having trouble finding your tent mate in the system, try entering just a few letters of their first or last name.  Participants who have already confirmed a tent mate will not appear in the search results.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Choose your tenting option below. You can choose a RANDOM tent assignment, DECLINE a tent assignment or SEARCH for a tent mate.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Select Tent Mate For Me]]></english>
+    </text>
+    <text>
+        <english><![CDATA[No Tent Required]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Enter your search criteria below:]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Search by email]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Search by First Name]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Search by Last Name]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Search For A Tent Mate]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Enter your invitation message here...]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Name]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Fundraising Status]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Send Tenting Request]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Send Request]]></english>
+    </text>
+</step>

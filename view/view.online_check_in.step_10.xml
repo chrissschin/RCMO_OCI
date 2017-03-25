@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 28 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_10:
+ * Check-In Complete (*.html view companion file)
+ *-->
+
+<step id="10">
+    <page_title>
+        <english><![CDATA[Congratulations! You have completed Online Check-In!]]></english>
+<french><![CDATA[Félicitations à vous! Vous avez terminé l'enregistrement en ligne !]]></french>
+    </page_title>
+    <text>
+        <english><![CDATA[Congratulations!]]></english>
+<french><![CDATA[Félicitations à vous!]]></french>
+    </text>
+    <text>
+        <english><![CDATA[You have completed Online Check-In!]]></english>
+<french><![CDATA[Vous avez terminé l'enregistrement en ligne !]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Amount you raised: ]]></english>
+<french><![CDATA[Montant que vous avez soulevé :]]></french>
+    </text>
+    <text>
+        <english><![CDATA[First Name]]></english>
+<french><![CDATA[Prénom]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Last Name]]></english>
+<french><![CDATA[Nom de famille]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Address 1]]></english>
+<french><![CDATA[Adresse 1]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Address 2]]></english>
+<french><![CDATA[Adresse 2]]></french>
+    </text>
+    <text>
+        <english><![CDATA[City]]></english>
+<french><![CDATA[Ville]]></french>
+    </text>
+    <text>
+        <english><![CDATA[State]]></english>
+<french><![CDATA[Province]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Zip Code]]></english>
+<french><![CDATA[Code postal]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Gender]]></english>
+<french><![CDATA[Le genre]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Pre-Register?]]></english>
+<french><![CDATA[Pré- inscrire?]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Email Address]]></english>
+<french><![CDATA[Adresse e-mail]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Participation Type]]></english>
+<french><![CDATA[Type de participation]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Team Name]]></english>
+<french><![CDATA[Nom de l'équipe]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Emergency Contact]]></english>
+<french><![CDATA[Personne à contacter en cas d'urgence]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Emergency Contact Phone]]></english>
+<french><![CDATA[En cas d'urgence Téléphone]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Tentmate Status]]></english>
+<french><![CDATA[Tente Maté Statut]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Print This Screen]]></english>
+<french><![CDATA[Imprimer cet écran]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Return to Participation Center]]></english>
+<french><![CDATA[Retour au Centre de participation]]></french>
+    </text>
+</step>
+ 

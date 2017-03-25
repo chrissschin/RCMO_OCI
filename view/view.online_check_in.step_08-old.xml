@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 28 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_08:
+ * Fundraising Goal (*.html view companion file)
+ *-->
+
+<step id="08">
+    <page_title>
+        <english><![CDATA[Fundraising Goal]]></english>
+    </page_title>
+<!-- AMOUNT VERBIAGE: ORDER OF ENTRIES MATTER, INDEXED EXACTLY TO DISPLAY THE PROPER VERBIAGE TO END-USER -->
+    <text>
+        <english><![CDATA[Amount raised: ]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Minimum Required: ]]></english>
+    </text>
+<!-- AMOUNT VERBIAGE: END -->
+<!-- COMPLETE VERBIAGE: ORDER OF ENTRIES MATTER, INDEXED EXACTLY TO DISPLAY THE PROPER VERBIAGE TO END-USER -->
+    <text>
+        <english><![CDATA[You or your team has enough funds raised for you to complete the Online Check-In process!]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Click the button below to pay for your pre-registration for next year's event.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Thank you for supporting the _EVENT_NAME_ by serving on the Crew. As Crew you have no fundraising minimum. Click the 'Next' button to complete your Online Check-In.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Congratulations,]]></english>
+    </text>
+<!-- COMPLETE VERBIAGE: END -->
+<!-- DENIED VERBIAGE: ORDER OF ENTRIES MATTER, INDEXED EXACTLY TO DISPLAY THE PROPER VERBIAGE TO END-USER -->
+    <text>
+        <english><![CDATA[In order for you to complete the Online Check-In process and participate in _EVENT_NAME_ you or your team need to raise an additional: -TXT-CURRENCY-SYMBOL- _AMOUNT_REQUIRED_ . You can use the Instant Self-Pledge button below to process payment for this donation immediately, or you can use the Delayed Self-Pledge button to commit to paying this amount at a later time.
+		
+		Please note that everyone who has not personally raised $1500 is required to check-in in person on Saturday morning prior to joining the OneWalk event.
+		
+		Due to team fundraising, those walkers who have not met their individual fundraising minimum by Saturday morning, will have their eligibility to walk calculated based on their team’s fundraising totals. If your team has not raised sufficient funds to get you to $1500, you will be required to turn in additional donations or complete a Delayed Self Pledge in order to walk.
+		
+		Confirm your place by raising at least $1500 in personal fundraising prior to Saturday September 12, 2015.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[You will also be able to pay for your next year's registration fee at the time you process your self pledge.]]></english>
+    </text>
+<!-- DENIED VERBIAGE: END -->
+<!-- PLEDGE VERBIAGE: ORDER OF ENTRIES MATTER, INDEXED EXACTLY TO DISPLAY THE PROPER VERBIAGE TO END-USER -->
+    <text>
+        <english><![CDATA[Re-Check My Status]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Use this link if you've recently completed the instant or delayed self-pledge forms.  It may be 3 or 4 minutes before your status is updated.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[By clicking the links below, you will leave Online Check-In. After processing your payment, close the newly opened browser or tab to return back to this page.  If you have additional questions or concerns about the Delayed / Instant self-pledge, your fundraising balance or general event questions, please call our office at 416-815-9255 for assistance.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Delayed Self-Pledge]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Instant Self-Pledge]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Pay for Pre-Registration]]></english>
+    </text>
+<!-- PLEDGE VERBIAGE: END -->
+</step>

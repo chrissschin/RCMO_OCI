@@ -1,0 +1,47 @@
+<?php
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 27 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * Core application file (abstract file, not to be used by itself)
+ *
+ * System/Application specific statements reside here
+ */
+
+
+## INVOKE APPLICATION CODE STATEMENTS  ##################################
+register_shutdown_function('_app_pri_instance');
+_app_pri_instance(true);
+
+/**
+ * _app_pri_instance()	intiliazes global variable '$_app_env'
+ *
+ * @param	BOOLEAN	$begin=FALSE
+ * @return	VOID	N/A
+ */
+function _app_pri_instance($begin=FALSE){
+    if($begin){
+        # DEV ENVIRONMENT ONLY STATEMENTS
+        if($GLOBALS['_app_env']['is_DEV']=(trim(@$_SERVER['REQUEST_URI']) && strstr($_SERVER['REQUEST_URI'],'/=dev=/'))){
+            $GLOBALS['_app_env']['php_ini_erl']=error_reporting();
+            $GLOBALS['_app_env']['php_ini_de']=ini_get('display_errors');
+            error_reporting(E_ALL|E_STRICT);
+            ini_set('display_errors',1);
+        }
+        # DEV end
+    }
+    else{
+        # DEV ENVIRONMENT ONLY STATEMENTS
+        if($GLOBALS['_app_env']['is_DEV']){
+            if(isset($GLOBALS['_app_env']['php_ini_erl'])&&isset($GLOBALS['_app_env']['php_ini_de'])){
+                error_reporting($GLOBALS['_app_env']['php_ini_erl']);
+                ini_set('display_errors',$GLOBALS['_app_env']['php_ini_de']);
+            }
+        }
+        # DEV end
+
+        unset($GLOBALS['_app_env']);
+    }
+}
+?>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 28 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_04:
+ * Health Insurance Info (*.html view companion file)
+ *-->
+
+<step id="04">
+    <page_title>
+        <english><![CDATA[Keep Fundraising]]></english>
+        <french><![CDATA[Gardez la collecte de fonds]]></french>
+    </page_title>
+    <text>
+        <english><![CDATA[Keep Fundraising]]></english>
+         <french><![CDATA[Gardez la collecte de fonds]]></french>
+    </text>
+    <text>
+        <english><![CDATA[For more information regarding supplemental insurance options click the link below:]]></english>
+        <french><![CDATA[Pour plus d'informations concernant les options d'assurance complémentaire cliquez sur le lien ci-dessous]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Supplemental Insurance]]></english>
+        <french><![CDATA[assurance complémentaire]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Participants who are traveling from outside Canada are encouraged to purchase Supplemental Insurace to cover any medical or travel issue during the OneWalk event.  Supplemental Insurance is optional but if you choose not to purchase Supplemental Insurance we highly encourage you to check with your current Health Insurance provider to ensure you will be covered for any expenses while at the event. Only basic first aid will be provided by our on site medical staff.]]></english>
+        <french><![CDATA[Les participants qui voyagent à l'extérieur du Canada sont encouragés à acheter supplémentaire d'Assurance pour couvrir toute question médicale ou Voyage au cours de l' événement OneWalk . Assurance complémentaire est facultative, mais si vous choisissez de ne pas acheter une assurance supplémentaire nous vous encourageons vivement à vérifier auprès de votre fournisseur d'assurance de santé actuel pour vous assurer que vous serez couvert pour les frais tout à l'événement. Seuls les premiers soins seront fournis par sur le site de notre personnel médical .]]></french>
+    </text>
+</step>

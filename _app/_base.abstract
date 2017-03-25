@@ -1,0 +1,88 @@
+<?php
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 27 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * Base file (abstract file, not to be used by itself)
+ *
+ * Utility/General purpose functions reside here
+ */
+
+/**
+ * nl()	concatenates '$count' UNIX/WINDOWS newline characters according to '$unix'
+ *
+ * @param	INTEGER	$count=1
+ * @param	BOOLEAN	$unix=TRUE
+ * @return	STRING	string of newline characters
+ */
+function nl($count=1,$unix=TRUE){
+    for($i=0;$i<$count;$i++){
+        @$nl.=($unix?"\n":"\r\n");
+    }
+    return $nl;
+}
+
+/**
+ * t()	concatenates '$count' HARD/SOFT tab according to '$hard'
+ *
+ * @param	INTEGER	$count=1
+ * @param	BOOLEAN	$hard=FALSE
+ * @return	STRING	string of tabs
+ */
+function t($count=1,$hard=FALSE){
+    for($i=0;$i<$count;$i++){
+        @$tab.=($hard?"\t":"    ");
+    }
+    return $tab;
+}
+
+/**
+ * pz()	concatenates '$count' ZEROS(0) according to '$prefix' to the passed integer value, though, not exceeding the integer value's string length
+ *
+ * @param	INTEGER	$val
+ * @param	INTEGER	$count=2
+ * @param	BOOLEAN	$prefix=TRUE
+ * @return	STRING	zero padded integer value
+ */
+function pz($val,$count=2,$prefix=TRUE){
+    for($i=strlen(($val=(string)$val));$i<$count;$i++){
+        if($prefix){
+            $val=('0'.$val);
+        }
+        else{
+            $val.='0';
+        }
+    }
+
+    return $val;
+}
+
+/**
+ * lng()	Uses SimpleXML element's child language element according to '$_app_env['language']' or English text for translation to another language
+ *
+ * @param	MIXED	$data
+ * @param	STRING	$name=NULL  the name of the child element of whom's English element to return
+ * @param	MIXED	$value=NULL the value of the child's English element of which you are searching for, can pass a SimpleXML element
+ * @return	MIXED	translated text
+ */
+function lng($data,$name=NULL,$value=NULL){
+    if($data instanceof SimpleXMLElement){
+        if(($name=trim($name))!=='' && ($value=trim($value))!==''){
+            $xpr=$data->xpath('./'.$name.'/'.$GLOBALS['_app_env']['language'].'[parent::'.$name.'/english=\''.$value.'\']');
+            $et=((($et=$data->xpath('./'.$name.'/english[text()=\''.$value.'\']')) instanceof SimpleXMLElement)&&(@$et[0] instanceof SimpleXMLElement)?$et[0]:'');
+        }
+        else{
+            $xpr=$data->xpath('./'.$GLOBALS['_app_env']['language']);
+            $et=$data->english;
+        }
+        $translated_text=(string)(@$xpr[0] instanceof SimpleXMLElement?$xpr[0]:$et);
+    }
+    else{
+        //Translate logic would follow here
+        $translated_text=$data;
+    }
+
+    return $translated_text;
+}
+?>

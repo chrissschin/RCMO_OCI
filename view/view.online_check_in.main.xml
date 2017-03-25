@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 30 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *-->
+
+<main>
+    <page_title>
+        <english><![CDATA[]]></english>
+    </page_title>
+    <text>
+        <english><![CDATA[OCI Banner Top]]></english>
+    </text>
+    <text>
+        <english><![CDATA[OCI Banner Bottom]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Previous]]></english>
+         <french><![CDATA[Précédent]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Next]]></english>
+        <french><![CDATA[Prochain]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Please correct form errors.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Must provide appropriate value.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[A valid e-mail is required.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Must be 10 digits. Parentheses, Dashes, Spaces, and Numbers only.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Numbers, Dashes, and Spaces only.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Must be 5 or 9 digits. Numbers, Dashes, and Spaces only.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Must be 6 characters. Letters, Numbers, Dashes, and Spaces only.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Letters, Numbers, and Underscores only.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Letters, Numbers, and Spaces only.]]></english>
+    </text>
+    <text>
+        <english><![CDATA[Logout]]></english>
+        <french><![CDATA[Logout]]></french>
+    </text>
+</main>

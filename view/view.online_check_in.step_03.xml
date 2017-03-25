@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 28 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_03:
+ * Emergency Contact Info (*.html view companion file)
+ *-->
+
+<step id="03">
+    <page_title>
+        <english><![CDATA[Important Information]]></english>
+        <french><![CDATA[Une information important]]></french>
+    </page_title>
+    <text>
+        <english><![CDATA[Important Information]]></english>
+        <french><![CDATA[Une information important]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Emergency Contact Name]]></english>
+        <french><![CDATA[Nom à contacter en cas d'urgence]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Emergency Contact Phone]]></english>
+        <french><![CDATA[En cas d'urgence Téléphone]]></french>
+    </text>
+    <text>
+        <english><![CDATA[The Ride uses a yellow flag and stickers to identify cancer survivors. If you are a cancer survivor or are battling cancer at this time and would like to be recognized, please check this box.]]></english>
+        <french><![CDATA[The Ride utilise un cordon et autocollants spécial pour identifier les survivants du cancer . Si vous êtes un survivant du cancer ou luttez cancer à cette époque et que vous souhaitez être reconnu , s'il vous plaît cocher cette case .]]></french>
+    </text>
+    <text>
+        <english><![CDATA[ ]]></english>
+        <french><![CDATA[ ]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Are you a cancer survivor?]]></english>
+        <french><![CDATA[Êtes-vous un survivant du cancer ?]]></french>
+    </text>
+    <text>
+        <english><![CDATA[If you require a vegetarian meal please check this box. Gluten free options will be available at every meal/snack area.]]></english>
+        <french><![CDATA[Si vous avez besoin d' un repas végétarien s'il vous plaît cocher cette case . sans gluten seront disponibles à chaque / snack- coin repas .]]></french>
+    </text>
+    <text>
+        <english><![CDATA[ ]]></english>
+        <french><![CDATA[ ]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Do you require a vegetarian meal?]]></english>
+        <french><![CDATA[Avez-vous besoin d'un moyen végétarien?]]></french>
+    </text>
+<!-- Begin adding years question -->
+    <text>
+        <english><![CDATA[How many years have you ridden with The Ride?]]></english>
+        <french><![CDATA[Combien d'années avez-vous monté avec The Ride ?]]></french>
+    </text>
+<!-- Begin adding Jersey question -->
+    <text>
+        <english><![CDATA[Please select your Jersey Size]]></english>
+        <french><![CDATA[S'il vous plaît sélectionnez votre taille Jersey]]></french>
+    </text>
+    <text>
+        <english><![CDATA[XS (chest size 32-34")]]></english>
+        <french><![CDATA[XS (chest size 32-34")]]></french>
+    </text>
+    <text>
+        <english><![CDATA[S (chest size 34-36")]]></english>
+        <french><![CDATA[S (chest size 34-36")]]></french>
+    </text>
+    <text>
+        <english><![CDATA[M (chest size 38-40")]]></english>
+        <french><![CDATA[M (chest size 38-40")]]></french>
+    </text>
+    <text>
+        <english><![CDATA[L (chest size 42-44")]]></english>
+        <french><![CDATA[L (chest size 42-44")]]></french>
+    </text>
+    <text>
+        <english><![CDATA[XL (chest size 46-48")]]></english>
+        <french><![CDATA[XL (chest size 46-48")]]></french>
+    </text>
+    <text>
+        <english><![CDATA[XXL (chest size 50-52")]]></english>
+        <french><![CDATA[XXL (chest size 50-52")]]></french>
+    </text>
+    <text>
+        <english><![CDATA[XXXL]]></english>
+        <french><![CDATA[XXXL]]></french>
+    </text>
+<!-- Begin adding Shuttle question -->
+    <text>
+        <english><![CDATA[Friday, June 10th Shuttles from Toronto (Exhibition Place Parking Lot 2) to Niagara Falls Host Hotel - 3:30 p.m. departure]]></english>
+        <french><![CDATA[Friday, June 10th Shuttles from Toronto (Exhibition Place Parking Lot 2) to Niagara Falls Host Hotel - 3:30 p.m. departure]]></french>
+    </text>
+    <text>
+        <english><![CDATA[]]></english>
+        <french><![CDATA[]]></french>
+    </text>
+    <text>
+        <english><![CDATA[I would like to book the 3:30 p.m. shuttle]]></english>
+        <french><![CDATA[I would like to book the 3:30 p.m. shuttle]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Friday, June 10th Shuttles from Toronto (Exhibition Place Parking Lot 2) to Niagara Falls Host Hotel - 6:15 p.m. departure]]></english>
+        <french><![CDATA[Friday, June 10th Shuttles from Toronto (Exhibition Place Parking Lot 2) to Niagara Falls Host Hotel - 6:15 p.m. departure]]></french>
+    </text>
+    <text>
+        <english><![CDATA[]]></english>
+        <french><![CDATA[]]></french>
+    </text>
+    <text>
+        <english><![CDATA[I would like to book the 6:15 p.m. shuttle]]></english>
+        <french><![CDATA[I would like to book the 6:15 p.m. shuttle]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Saturday Morning Shuttles from Toronto Host Hotel (Intercontinental Hotel) to Opening Ceremonies. Shuttles will run from from 6:00am to 6:45am, fill on a first come, first serve basis and depart when full. Please note: Bike Transport will not be provided with the Saturday morning shuttles.]]></english>
+        <french><![CDATA[Saturday Morning Shuttles from Toronto Host Hotel (Intercontinental Hotel) to Opening Ceremonies. Shuttles will run from from 6:00am to 6:45am, fill on a first come, first serve basis and depart when full. Please note: Bike Transport will not be provided with the Saturday morning shuttles.]]></french>
+    </text>
+    <text>
+        <english><![CDATA[]]></english>
+        <french><![CDATA[]]></french>
+    </text>
+    <text>
+        <english><![CDATA[I would like to book the shuttle from the Toronto Host Hotel to the Toronto Opening Ceremonies Site]]></english>
+        <french><![CDATA[I would like to book the shuttle from the Toronto Host Hotel to the Toronto Opening Ceremonies Site]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Saturday Morning Shuttles from Niagara Host Hotel (Sheraton Falls View Hotel) to Opening Ceremonies. Shuttles will run from from 6:00am to 6:45am, fill on a first come, first serve basis and depart when full. Please note: Bike Transport will not be provided with the Saturday morning shuttles.]]></english>
+        <french><![CDATA[Saturday Morning Shuttles from NIagara Host Hotel (Sheraton Falls View Hotel) to Opening Ceremonies. Shuttles will run from from 6:00am to 6:45am, fill on a first come, first serve basis and depart when full. Please note: Bike Transport will not be provided with the Saturday morning shuttles.]]></french>
+    </text>
+    <text>
+        <english><![CDATA[]]></english>
+        <french><![CDATA[]]></french>
+    </text>
+    <text>
+        <english><![CDATA[I would like to book the shuttle from the Niagara Host Hotel to the Niagara Opening Ceremonies Site]]></english>
+        <french><![CDATA[I would like to book the shuttle from the Niagara Host Hotel to the Niagara Opening Ceremonies Site]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Niagara Finish Line to Toronto Ride Venue Shuttle. To ensure your bike returns to Toronto with you the Ride offers a complimentary Bike Transport as well if needed.]]></english>
+        <french><![CDATA[Niagara Finish Line to Toronto Ride Venue Shuttle. To ensure your bike returns to Toronto with you the Ride offers a complimentary Bike Transport as well if needed.]]></french>
+    </text>
+    <text>
+        <english><![CDATA[]]></english>
+        <french><![CDATA[]]></french>
+    </text>
+    <text>
+        <english><![CDATA[I would like to book the shuttle from the Niagara Finish Line back to Toronto]]></english>
+        <french><![CDATA[I would like to book the shuttle from the Niagara Finish Line back to Toronto]]></french>
+    </text>
+    <text>
+        <english><![CDATA[The Ride will provide complimentary Bike Transport on a separate truck to the Niagara Falls site. All bikes will be secured overnight with 24 hour security. ]]></english>
+        <french><![CDATA[The Ride will provide complimentary Bike Transport on a separate truck to the Niagara Falls site. All bikes will be secured overnight with 24 hour security. ]]></french>
+    </text>
+    <text>
+        <english><![CDATA[]]></english>
+        <french><![CDATA[]]></french>
+    </text>
+    <text>
+        <english><![CDATA[I would like to book bike transport]]></english>
+        <french><![CDATA[I would like to book bike transport]]></french>
+    </text>
+</step>
+

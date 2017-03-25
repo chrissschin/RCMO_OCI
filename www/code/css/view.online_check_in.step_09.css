@@ -1,0 +1,78 @@
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	June 1 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ */
+
+#_oci > #main > #step_09 input[type=email]{
+    width: 70%;
+}
+
+#_oci > #main > #step_09 input[type=text]{
+    width: 46%;
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > div > textarea,
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results{
+    width: 99%;
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results,
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > thead > tr > th,
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > tr > td{
+    border: 1px solid rgba(195,195,195,1.0);
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results{
+    background: rgba(250,250,250,1.0);
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > thead > tr{
+    background: rgba(215,215,215,1.0);
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > tr:nth-child(odd){
+    background: rgba(195,195,195,0.125);
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > thead > tr > th,
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > tr > td{
+    padding: 1%;
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > tr > td:nth-child(3){
+   text-align: center;
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > tr > td > #loading{
+    display: none;
+    padding-bottom: 16.25%;
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > tr > td > #loading .animation_loading{
+    background: transparent;
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > tr > td > #loading .animation_loading > .shape_inner > .circle_bg{
+    fill-opacity: 0.0;
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > tr > td > #loading .animation_loading > .shape_inner > .circle_fg{
+    fill: rgba(50,50,50,1.0);
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > tr > td > #loading .animation_loading > .shape_outter > circle{
+    stroke: rgba(50,50,50,1.0);
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > .data_fetched:hover{
+    background: rgba(178,225,255,1.0);
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > .data_fetched > td{
+    cursor: pointer !important;
+}
+
+#_oci > #main > #step_09 > #tentmate_choose > div > #search_results > tbody > .data_fetched > td:active{
+    background: rgba(108,155,155,1.0);
+}

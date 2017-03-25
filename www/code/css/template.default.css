@@ -1,0 +1,549 @@
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	June 1 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ */
+
+@font-face{
+    font-family: 'EurostileLTStdBoldEx2';
+    src: url('../../media/fonts/EurostileLTStdBoldEx2.eot');
+    src: url('../../media/fonts/EurostileLTStdBoldEx2.eot') format('embedded-opentype'),
+         url('../../media/fonts/EurostileLTStdBoldEx2.woff2') format('woff2'),
+         url('../../media/fonts/EurostileLTStdBoldEx2.woff') format('woff'),
+         url('../../media/fonts/EurostileLTStdBoldEx2.ttf') format('truetype'),
+         url('../../media/fonts/EurostileLTStdBoldEx2.svg#EurostileLTStdBoldEx2') format('svg');
+}
+
+@font-face{
+    font-family: 'EurostileLTStdBold';
+    src: url('../../media/fonts/EurostileLTStdBold.eot');
+    src: url('../../media/fonts/EurostileLTStdBold.eot') format('embedded-opentype'),
+         url('../../media/fonts/EurostileLTStdBold.woff2') format('woff2'),
+         url('../../media/fonts/EurostileLTStdBold.woff') format('woff'),
+         url('../../media/fonts/EurostileLTStdBold.ttf') format('truetype'),
+         url('../../media/fonts/EurostileLTStdBold.svg#EurostileLTStdBold') format('svg');
+}
+
+@font-face{
+    font-family: 'VerdanaEmbed';
+    src: url('../../media/fonts/verdana.eot');
+    src: url('../../media/fonts/verdana.eot') format('embedded-opentype'),
+         url('../../media/fonts/verdana.woff2') format('woff2'),
+         url('../../media/fonts/verdana.woff') format('woff'),
+         url('../../media/fonts/verdana.ttf') format('truetype'),
+         url('../../media/fonts/verdana.svg#verdana') format('svg');
+}
+
+@media only screen and (max-width: 1400px){
+    #_oci{
+        animation-name: none !important;
+    }
+
+    #_oci > #eye_candy_body > #wall > #vid{
+        visibility: hidden !important;
+    }
+}
+
+@media only screen and (max-width: 1024px){
+    #_oci > #eye_candy_body #trim_animate{
+        animation-name: none !important;
+    }
+}
+
+@media only screen and (max-width: 790px){
+    #_oci > #eye_candy_body{
+        display: none !important;
+    }
+}
+
+@keyframes body_bg_color_transition{
+    0%{
+       background: rgba(245,210,9,1.0);
+    }
+    50%{
+       background: rgba(168,74,0,1.0);
+    }
+    100%{
+       background: rgba(245,210,9,1.0);
+    }
+}
+
+body{
+    background: rgba(245,210,9,1.0);
+    animation-name: body_bg_color_transition;
+    animation-duration: 120s;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-delay: 0s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+}
+
+#_oci{
+    margin: 0% 0% 0% 0%;
+}
+
+#_oci::after{
+    content: "";
+    display: block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin: 0% auto 0% auto;
+    visibility: hidden;
+}
+
+#_oci *{
+    box-sizing: border-box;
+    cursor: default;
+}
+
+#_oci table,
+#_oci thead,
+#_oci tbody,
+#_oci tfoot,
+#_oci tr,
+#_oci td,
+#_oci th{
+    border-collapse: collapse;
+}
+
+#_oci .root_element{
+    width: 790px !important;
+}
+
+#_oci .not_displayed{
+    display: none !important;
+}
+
+#_oci .not_visible{
+    visibility: hidden !important;
+}
+
+#_oci .border_bottom_radius{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#_oci .responsive_wrapper{
+    position: relative;
+    width: 100%;
+    height: 0%;
+    margin: auto;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+}
+
+#_oci .background_shade{
+    background: rgba(50,50,50,0.85);
+}
+
+#_oci .animation_waiting{
+    width: 100%;
+    height: 100%;
+}
+
+#_oci .animation_waiting > .backdrop,
+#_oci .animation_waiting > .shape_lvl_1,
+#_oci .animation_waiting > .shape_lvl_1 > .shape_svg,
+#_oci .animation_waiting > .trim,
+#_oci .animation_waiting > .label{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#_oci .animation_waiting > .backdrop{
+    z-index: 0;
+}
+
+#_oci .animation_waiting > .backdrop > rect{
+    fill: rgba(0,0,0,1.0);
+}
+
+#_oci .animation_waiting > .shape_lvl_1{
+    z-index: 1;
+    left: 4% !important;
+    top: 21% !important;
+    width: 92% !important;
+    height: 57% !important;
+    overflow: hidden;
+}
+
+@keyframes _oci_a_w_sl1_shape_svg{
+    0%{
+       left: 100%;
+    }
+    100%{
+       left: -100%;
+    }
+}
+
+#_oci .animation_waiting > .shape_lvl_1 > .shape_svg{
+    transform: skew(45deg);
+    animation-name: _oci_a_w_sl1_shape_svg;
+    animation-duration: 2.5s;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-delay: 0s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+}
+
+#_oci .animation_waiting > .shape_lvl_1 > .shape_svg > g > .rect_bg{
+    fill: rgba(168,74,0,1.0);
+}
+
+#_oci .animation_waiting > .shape_lvl_1 > .shape_svg > g > .rect_fg,
+#_oci .animation_waiting > .label > text > .fg_text{
+    fill: rgba(245,210,9,1.0);
+}
+
+@keyframes _oci_a_w_sl1_sl2_s_s_rect_fg{
+    0%{
+        opacity: 1.0;
+    }
+    100%{
+        opacity: 0.0;
+    }
+}
+
+#_oci .animation_waiting > .shape_lvl_1 > .shape_svg > g > .rect_fg{
+    animation-name: _oci_a_w_sl1_sl2_s_s_rect_fg;
+    animation-duration: 2.5s;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-delay: 0s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+}
+
+#_oci .animation_waiting > .trim{
+    z-index: 2;
+}
+
+#_oci .animation_waiting > .trim > .inner{
+    stroke: rgba(0,0,0,1.0);
+    stroke-width: 2px;
+    fill: rgba(0,0,0,0.0);
+}
+
+#_oci .animation_waiting > .trim > .outter{
+    stroke: rgba(245,210,9,1.0);
+    stroke-width: 1px;
+    fill: rgba(0,0,0,0.0);
+}
+
+#_oci .animation_waiting > .label{
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+}
+
+#_oci .animation_waiting > .label > text > tspan{
+    font-family: EurostileLTStdBoldEx2;
+    font-style: italic;
+    font-size: 8px;
+    text-anchor: middle;
+}
+
+#_oci .animation_waiting > .label > text > .bg_text{
+    stroke: rgba(0,0,0,1.0);
+    stroke-width:  3px;
+}
+
+#_oci .animation_waiting > .label > text > .fg_text{
+}
+
+#_oci .animation_loading,
+#_oci .animation_loading > .shape_outter,
+#_oci .animation_loading > .shape_inner{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#_oci .animation_loading{
+    z-index: 0;
+}
+
+@keyframes _oci_a_l_shape_outter{
+    0%{
+       transform: rotate(0deg);
+    }
+    100%{
+       transform: rotate(360deg);
+    }
+}
+
+#_oci .animation_loading > .shape_outter{
+    z-index: 0;
+    transform-origin: 50% 50%;
+    animation-name: _oci_a_l_shape_outter;
+    animation-duration: 2.5s;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-delay: 0s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+}
+
+#_oci .animation_loading > .shape_outter > circle{
+    stroke: rgba(245,210,9,1.0);
+    stroke-width: 16px;
+    stroke-dasharray: 107,10;
+    fill: rgba(0,0,0,0.0);
+}
+
+#_oci .animation_loading > .shape_inner{
+    z-index: 1;
+}
+
+#_oci .animation_loading > .shape_inner > .circle_bg{
+    fill: rgba(168,74,0,1.0);
+}
+
+@keyframes _oci_a_l_s_i_circle_fg{
+    0%{
+       opacity: 1.0;
+    }
+    50%{
+       opacity: 0.05;
+    }
+    100%{
+       opacity: 1.0;
+    }
+}
+
+#_oci .animation_loading > .shape_inner > .circle_fg{
+    fill: rgba(245,210,9,1.0);
+    animation-name: _oci_a_l_s_i_circle_fg;
+    animation-duration: 2.5s;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-delay: 0s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+}
+
+#_oci > #eye_candy_body,
+#_oci > #eye_candy_body > #wall .block,
+#_oci > #eye_candy_body > #wall > #trim_top,
+#_oci > #eye_candy_body > #wall > #trim_bottom{
+    background: rgba(0,0,0,1.0);
+}
+
+#_oci > #eye_candy_body{
+    z-index: 0;
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+}
+
+#_oci > #eye_candy_body > #wall{
+    z-index: 0;
+    position: relative;
+    max-width: 1575px;
+    margin: 0% auto 0% auto;
+    overflow: hidden;
+}
+
+#_oci > #eye_candy_body > #wall .block,
+#_oci > #eye_candy_body > #wall .rectangle{
+    position: absolute;
+    transform: skew(135deg);
+    transform-origin: 50% 50%;
+}
+
+#_oci > #eye_candy_body > #wall .block{
+    top: 0%;
+    height: 100%;
+}
+
+#_oci > #eye_candy_body > #wall .rectangle{
+    top: 9%;
+    height: 88%;
+    box-shadow: 0px 0px 120px 0px rgba(75,75,75,1.0) inset;
+    border: 8px solid rgba(245,210,9,1.0);
+}
+
+#_oci > #eye_candy_body > #wall > #pic,
+#_oci > #eye_candy_body > #wall > #vid{
+    width: 100%;
+    height: auto;
+}
+
+#_oci > #eye_candy_body > #wall > #pic{
+    z-index: 0;
+    position: absolute;
+}
+
+#_oci > #eye_candy_body > #wall > #vid{
+    z-index: 1;
+    position: relative;
+}
+
+@keyframes _oci_e_c_b_w_trim_animate{
+    0%{
+       left: -353%;
+    }
+    100%{
+       left: -15%;
+    }
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate{
+    z-index: 2;
+    position: absolute;
+    left: -353%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    animation-name: _oci_e_c_b_w_trim_animate;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-delay: 0s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_1{
+    left: 0%;
+    width: 127%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_2{
+    left: 205%;
+    width: 50%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_3{
+    left: 285%;
+    width: 20%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_4{
+    left: 315%;
+    width: 10%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_5{
+    left: 330%;
+    width: 5%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_6{
+    left: 338%;
+    width: 127%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_2 > div,
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_3 > div,
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_4 > div{
+    position: relative;
+    width: 70%;
+    height: 100%;
+    margin: 0% auto 0% auto;
+    animation-timing-function: ease-out;
+    animation-direction: normal;
+    animation-delay: 0s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+}
+
+@keyframes _oci_e_c_b_w_t_a_b2_div{
+    0%{
+       top: 101%;
+       background: rgba(168,74,0,1.0);
+    }
+    100%{
+       top: -101%;
+       background: rgba(245,210,9,1.0);
+    }
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_2 > div{
+    animation-name: _oci_e_c_b_w_t_a_b2_div;
+    animation-duration: 7.9s;
+}
+
+@keyframes _oci_e_c_b_w_t_a_b3_div{
+    0%{
+       top: -101%;
+       background: rgba(245,210,9,1.0);
+    }
+    100%{
+       top: 101%;
+       background: rgba(168,74,0,1.0);
+    }
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_3 > div{
+    animation-name: _oci_e_c_b_w_t_a_b3_div;
+    animation-duration: 5.6s;
+}
+
+@keyframes _oci_e_c_b_w_t_a_b4_div{
+    0%{
+       top: 101%;
+       background: rgba(168,74,0,1.0);
+    }
+    100%{
+       top: -101%;
+       background: rgba(245,210,9,1.0);
+    }
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #blind_4 > div{
+    animation-name: _oci_e_c_b_w_t_a_b4_div;
+    animation-duration: 3.3s;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #inner_a{
+    left: 254.25%;
+    width: 29.80%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #inner_b{
+    left: 304.25%;
+    width: 9.80%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_animate > #inner_c{
+    left: 324.25%;
+    width: 4.80%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_top,
+#_oci > #eye_candy_body > #wall > #trim_bottom{
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_top{
+    top: 0%;
+    height: 9%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_bottom{
+    top: 97%;
+    height: 3%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_left,
+#_oci > #eye_candy_body > #wall > #trim_right{
+    z-index: 4;
+    position: absolute;
+    width: 5%;
+    height: 100%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_left{
+    left: -13.5%;
+}
+
+#_oci > #eye_candy_body > #wall > #trim_right{
+    left: 108.5%;
+}

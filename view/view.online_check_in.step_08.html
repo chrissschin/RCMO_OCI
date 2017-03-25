@@ -1,0 +1,23 @@
+
+            <div id="step_08" class="content border_bottom_radius">
+                <div class="login_info_div"><b>User Name:</b> -USERNAME- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -TEAMNAME-</div>
+                <div class="lang_div">Language -DROPDOWN-LANGUGES-   <input type="button" style=" font-size: 10px" value="-TXT-LOG-OUT-" onclick="_oci.main.user_logout();" data-oci-main-form="validate"/></div><br>
+                <div class="line_margin font_bold"><span>-TXT-AMOUNT-RAISED-</span>-TXT-CURRENCY-SYMBOL-_AMOUNT_RAISED_</div>
+                <div class="line_margin font_bold color_required_AMT_REQ_CLASS_"><span>-TXT-AMOUNT-REQUIRED-</span>-TXT-CURRENCY-SYMBOL-_AMOUNT_REQUIRED_</div>
+                <div class="line_margin font_bold_AMT_STMNT_CLASS_">-TXT-AMOUNT-STATEMENT-</div>
+                <div id="self_pledge" class="line_margin_SELF_PLEDGE_CLASS_">
+                    <table id="status_check">
+                        <tbody>
+                            <tr>
+                                <td><a href="javascript:_oci.main.submit('step_08',this,null);">-TXT-CHECK-MY-STATUS-</a></td>
+                                <td>-TXT-STATUS-CHECK-NOTICE-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="line_margin">-TXT-SELF-PLEDGE-NOTICE-</div>
+                    <div id="quick_choice" class="line_margin">
+                        <input class="_DSP_BTN_CLASS_" type="button" value="-TXT-DELAYED-SP-" onclick="_oci.open(decodeURIComponent('=URL=DELAYED=SP='));"/>
+                        <input class="_ISP_BTN_CLASS_" type="button" value="-TXT-INSTANT-SP-" onclick="_oci.open(decodeURIComponent('=URL=INSTANT=SP='));"/>
+                    </div>
+                </div>
+            </div>

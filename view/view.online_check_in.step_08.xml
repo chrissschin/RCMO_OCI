@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 28 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_08:
+ * Fundraising Goal (*.html view companion file)
+ *-->
+
+<step id="08">
+    <page_title>
+        <english><![CDATA[Fundraising Goal]]></english>
+        <french><![CDATA[Objectif de financement]]></french>
+    </page_title>
+<!-- AMOUNT VERBIAGE: ORDER OF ENTRIES MATTER, INDEXED EXACTLY TO DISPLAY THE PROPER VERBIAGE TO END-USER -->
+    <text>
+        <english><![CDATA[Amount raised: ]]></english>
+        <french><![CDATA[Somme amassée :]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Minimum Required: ]]></english>
+        <french><![CDATA[Minimum requis:]]></french>
+    </text>
+<!-- AMOUNT VERBIAGE: END -->
+<!-- COMPLETE VERBIAGE: ORDER OF ENTRIES MATTER, INDEXED EXACTLY TO DISPLAY THE PROPER VERBIAGE TO END-USER -->
+    <text>
+        <english><![CDATA[You have enough funds raised for you to complete the Online Check-In process!]]></english>
+        <french><![CDATA[Vous avez assez de fonds recueillis pour vous de compléter le Check-In Processus en ligne !]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Click the button below to pay for your pre-registration for next year's event.]]></english>
+        <french><![CDATA[Cliquez sur le bouton ci-dessous pour payer pour votre pré-inscription pour l'événement de l'année prochaine .]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Thank you for supporting the _EVENT_NAME_ by serving on the Crew. As Crew you have no fundraising minimum. Click the 'Next' button to complete your Online Check-In.]]></english>
+        <french><![CDATA[Nous vous remercions de soutenir le _EVENT_NAME_ en siégeant à l'équipage. Comme Crew vous n'avez pas de collecte de fonds minimum. Cliquez sur le bouton «Suivant» pour compléter votre enregistrement en ligne]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Congratulations,]]></english>
+        <french><![CDATA[Félicitations à vous]]></french>
+    </text>
+<!-- COMPLETE VERBIAGE: END -->
+<!-- DENIED VERBIAGE: ORDER OF ENTRIES MATTER, INDEXED EXACTLY TO DISPLAY THE PROPER VERBIAGE TO END-USER -->
+    <text>
+        <english><![CDATA[In order to complete Online Check-In and participate in _EVENT_NAME_ you need to raise an additional: -TXT-CURRENCY-SYMBOL-_AMOUNT_NEEDED_. You can use the instant self-pledge link below to process this donation immediately, or you can use the delayed self-pledge link to commit to paying this amount at a later time.]]></english>
+		<french><![CDATA[Afin de vous de compléter le processus d'arrivée en ligne et de participer à _EVENT_NAME_ vous ou votre équipe devez recueillir une somme supplémentaire : -TXT-CURRENCY-SYMBOL-_AMOUNT_NEEDED_ . 
+Vous pouvez utiliser le bouton instantané auto- Pledge ci-dessous pour traiter le paiement pour ce don immédiatement , ou vous pouvez utiliser le bouton d'auto- Pledge différée à engager à payer ce montant à une date ultérieure]]></french>
+    </text>
+    <text>
+        <english><![CDATA[You will also be able to pay for your next year's registration fee at the time you process your self pledge.]]></english>
+        <french><![CDATA[Vous serez également en mesure de payer la taxe d'enregistrement de votre prochaine année au moment où vous traitez votre auto engagement]]></french>
+    </text>
+<!-- DENIED VERBIAGE: END -->
+<!-- PLEDGE VERBIAGE: ORDER OF ENTRIES MATTER, INDEXED EXACTLY TO DISPLAY THE PROPER VERBIAGE TO END-USER -->
+    <text>
+        <english><![CDATA[Re-Check My Status]]></english>
+        <french><![CDATA[Vérifiez Mon statut]]></french>
+    </text>
+  
+    <text>
+        <english><![CDATA[Use this link if you've recently completed the instant or delayed self-pledge forms. It may be 3 or 4 minutes before your status is updated.]]></english>
+       <french><![CDATA[Utilisez ce lien si vous avez récemment terminé les formulaires d'auto- gage instantanés ou retardés . Il peut être 3 ou 4 minutes avant que votre état ​​est mis à jour .]]></french>
+    </text>
+    <text>
+        <english><![CDATA[By clicking the links below, you will leave Online Check-In. After processing your payment, close the newly opened browser or tab to return back to this page.
+ If you have additional questions or concerns about the Delayed / Instant self-pledge, your fundraising balance or general event questions, please call our office at 877.699.2453 for assistance.]]></english>
+ <french><![CDATA[En cliquant sur les liens ci-dessous , vous quitterez l'enregistrement en ligne . Après le traitement de votre paiement , fermez le navigateur ou l'onglet nouvellement ouvert pour revenir à cette page .
+ Si vous avez des questions ou des préoccupations au sujet de la / instantanée auto- engagement différé supplémentaires , le solde de votre collecte de fonds ou des questions générales de l'événement, s'il vous plaît appelez notre bureau au 877.699.2453 pour l'assistance .]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Delayed Self-Pledge]]></english>
+        <french><![CDATA[Retardé Self- Pledge]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Instant Self-Pledge]]></english>
+        <french><![CDATA[Immédiat Self- Pledge]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Pay for Pre-Registration]]></english>
+        <french><![CDATA[Payer pour pré-inscription]]></french>
+    </text>
+<!-- PLEDGE VERBIAGE: END -->
+</step>

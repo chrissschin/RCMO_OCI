@@ -1,0 +1,353 @@
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	June 1 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ */
+
+@media only screen and (max-width: 790px){
+    #_oci > #main{
+        padding-bottom: 3.5% !important;
+    }
+}
+
+@media only screen and (max-width: 556px){
+    #_oci > #main > .content > #submit_curtain > .responsive_wrapper{
+        min-width: 90%;
+    }
+
+    #_oci > #main > .content label:not([class=field_text]){
+         display: block;
+    }
+
+    #_oci > #main > .content input[type=email],
+    #_oci > #main > .content input[type=tel],
+    #_oci > #main > .content input[type=text],
+    #_oci > #main > .content input[type=password],
+    #_oci > #main > .content textarea{
+        min-width: 99%;
+    }
+
+    #_oci > #main > .content input[id=primary_zip]{
+        min-width: 45%;
+    }
+
+    #_oci > #main > .content #quick_choice > input:first-child{
+        display: block;
+        margin-bottom: 6% !important;
+    }
+
+    #_oci > #main > .content #Log_In{
+        text-align: left !important;
+    }
+
+    #_oci > #main > #navigation > #main_nav_previous{
+        padding-left: 1% !important;
+    }
+
+    #_oci > #main > #navigation > #main_nav_next{
+        padding-right: 1% !important;
+    }
+}
+
+#_oci > #main,
+#_oci > #main > .content table,
+#_oci > #main > .content input:not([data-oci-main-input-not-text]),
+#_oci > #main > .content textarea,
+#_oci > #main > .content select,
+#_oci > #main > #navigation input[type=button][class=submit]{
+    color: rgba(0,0,0,1.0);
+}
+
+#_oci > #main,
+#_oci > #main > .content table,
+#_oci > #main > .content input:not([data-oci-main-input-not-text]),
+#_oci > #main > .content textarea,
+#_oci > #main > .content select{
+    font-family: VerdanaEmbed,Arial,Helvetica,sans-serif;
+}
+
+#_oci > #main,
+#_oci > #main > .content table{
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#_oci > #main{
+    z-index: 1;
+    position: relative;
+    max-width: 100%;
+    min-width: 360px;
+    margin: 0% auto 0% auto;
+    box-shadow: 0px 0px 75px 0px rgba(215,215,215,1.0) inset;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid rgba(0,0,0,1.0);
+    background: rgba(255,255,255,1.0);
+    padding: 0% 0% 1% 0%;
+}
+
+#_oci > #main .border_error{
+    border: 1px solid rgba(200,0,0,1.0);
+}
+
+#_oci > #main .color_error{
+    color: rgba(200,0,0,1.0);
+}
+
+#_oci > #main .border_notice{
+    border: 1px solid rgba(0,0,200,1.0);
+}
+
+#_oci > #main .color_notice{
+    color: rgba(0,0,200,1.0);
+}
+
+#_oci > #main > #submit_curtain{
+    display: none;
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#_oci > #main > #submit_curtain > .responsive_wrapper{
+    width: 65%;
+    padding-bottom: 20% !important;
+}
+
+#_oci > #main > #banner_top{
+    max-width: 100%;
+    height: auto;
+}
+
+#_oci > #main > #messages .message{
+    margin: 1% auto auto auto;
+    padding: 1%;
+}
+
+#_oci > #main > #messages .error{
+}
+
+#_oci > #main > #messages .notice{
+}
+
+#_oci > #main > .content{
+    position: relative;
+    width: 96.5%;
+    margin: 1% auto auto auto;
+}
+
+#_oci > #main > .content h1,
+#_oci > #main > .content ul{
+    margin-top: 0%;
+}
+
+#_oci > #main > .content h1{
+    font-family: EurostileLTStdBold;
+    margin-bottom: 3%;
+    font-size: 30px;
+    text-align: center;
+}
+
+#_oci > #main > .content ul{
+    margin-bottom: 0%;
+}
+
+#_oci > #main > .content a{
+    border-radius: 3px;
+    padding: 2px 10px 3px 9px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+#_oci > #main > .content a:hover{
+    background: rgba(178,225,255,1);
+    color: rgba(218,124,12,1.0);
+}
+
+#_oci > #main > .content a:active{
+    background: rgba(178,225,255,1);
+    color: rgba(168,74,0,1.0);
+}
+
+#_oci > #main > .content label,
+#_oci > #main > .content label span[class=required]{
+    vertical-align: top;
+}
+
+#_oci > #main > .content label:not([class=field_text]){
+    margin-right: 2px;
+    color: rgba(50,50,50,0.60);
+    white-space: nowrap;
+}
+
+#_oci > #main > .content input:not([data-oci-main-input-not-text]),
+#_oci > #main > .content textarea,
+#_oci > #main > .content select,
+#_oci > #main > .content .field_text,
+#_oci > #main > #navigation input[type=button][class=submit]{
+    font-size: 20px;
+    text-shadow: -1px 1px 2px rgba(100,100,100,0.5);
+}
+
+#_oci > #main > .content input:not([data-oci-main-input-not-text]),
+#_oci > #main > .content textarea,
+#_oci > #main > .content select,
+#_oci > #main > .content .field_text{
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+}
+
+#_oci > #main > .content input:not([data-oci-main-input-not-text]),
+#_oci > #main > .content textarea,
+#_oci > #main > .content select,
+#_oci > #main > #navigation input[type=button][class=submit]{
+    box-shadow: -1px 1px 2px 0px rgba(100,100,100,0.5);
+    border-width: 1px;
+    border-style: solid;
+}
+
+#_oci > #main > .content input:not([data-oci-main-input-not-text]),
+#_oci > #main > .content textarea,
+#_oci > #main > .content select{
+    border-radius: 3px;
+    border-color: rgba(75,75,75,0.7);
+    background: linear-gradient(to top,rgba(235,235,235,1.0),rgba(255,255,255,1.0));
+    padding: 2px 3px 4px 3px;
+}
+
+#_oci > #main > .content input[type=radio],
+#_oci > #main > .content input[type=checkbox]{
+    width: 19px;
+    height: 19px;
+}
+
+#_oci > #main > .content input[type=button],
+#_oci > #main > #navigation input[type=button][class=submit]{
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#_oci > #main > .content input[type=button]{
+    border-color: rgba(75,75,75,1.0);
+    background: linear-gradient(to top,rgba(215,215,215,1.0),rgba(250,250,250,1.0));
+    padding: 3px 6px 4px 6px;
+}
+
+#_oci > #main > .content input[type=button]:hover{
+    background: linear-gradient(to top,rgba(75,75,75,0.5),rgba(235,235,235,1.0));
+}
+
+#_oci > #main > .content input[type=button]:active{
+    background: linear-gradient(to top,rgba(225,225,225,1.0),rgba(75,75,75,0.7));
+}
+
+#_oci > #main > .content .line_margin{
+    margin-top: 3%;
+}
+
+#_oci > #main > .content .line_margin .line_margin_sub{
+    margin-top: 1.5%;
+}
+
+#_oci > #main > .content .info_columns_left,
+#_oci > #main > .content .info_columns_right{
+    display: inline-block;
+    max-width: 100%;
+    width: 375px;
+    vertical-align: top;
+}
+
+#_oci > #main > .content .font_bold{
+   font-weight: 700;
+}
+
+#_oci > #main > .content .color_complete{
+    color: rgba(0,128,0,1.0);
+}
+
+#_oci > #main > .content .color_required{
+    color: rgba(255,0,0,1.0);
+}
+
+#_oci > #main > .content .field_row > tbody > tr > td{
+    vertical-align: top;
+}
+
+#_oci > #main > .content .field_row > tbody > tr > .description{
+    width: 62%;
+    padding-right: 1.5%;
+}
+
+#_oci > #main > .content .field_row > tbody > tr > .field{
+    width: 1%;
+}
+
+#_oci > #main > .content .field_text_box{
+    display: inline-block;
+    width: 57%
+}
+
+#_oci > #main > .content .field_text{
+    white-space: normal;
+}
+
+#_oci > #main > .content .word_break{
+    word-break: break-all;
+}
+
+#_oci > #main > .content #quick_choice > input:first-child{
+    margin-right: 6%;
+}
+
+#_oci > #main > #navigation{
+    margin: 7.5% auto auto auto;
+    text-align: center;
+}
+
+#_oci > #main > #navigation input[type=button][class=submit]{
+    border-color: rgba(218,124,12,1.0);
+    background: linear-gradient(to top,rgba(244,122,32,1.0),rgba(250,165,26,1.0));
+    padding: 6px 8px 6px 8px;
+    font-family: EurostileLTStdBoldEx2;
+}
+
+#_oci > #main > #navigation input[type=button][class=submit]:hover{
+    background: linear-gradient(to top,rgba(224,102,12,1.0),rgba(230,145,6,1.0));
+}
+
+#_oci > #main > #navigation input[type=button][class=submit]:active{
+    background: linear-gradient(to top,rgba(200,115,0,1.0),rgba(194,72,0,1.0));
+}
+
+#_oci > #main > #navigation > #main_nav_validation_message{
+    width: 92%;
+    margin: 0% auto 0% auto;
+    padding: 1% 1% 2% 1%;
+}
+
+#_oci > #main > #navigation > #main_nav_previous,
+#_oci > #main > #navigation > #main_nav_next{
+    padding-top: 1%;
+}
+
+#_oci > #main > #navigation > #main_nav_previous{
+    float: left;
+    padding-left: 2.5%;
+}
+
+#_oci > #main > #navigation > #main_nav_next{
+    float: right;
+    padding-right: 2.5%;
+}
+
+#_oci > #main > #navigation > #banner_bottom{
+    max-width: 100%;
+    width: 112px;
+    height: auto;
+}

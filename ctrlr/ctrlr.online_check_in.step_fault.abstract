@@ -1,0 +1,51 @@
+<?php
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 29 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_fault:
+ * Fault Page (abstract file, not to be used by itself)
+ *
+ * This is the step that is called when the requested/invoked step
+ * does not replace the view placeholder with its view content
+ *
+ * NOTE:
+ * This step should not make calls to external APIs or Databases since
+ * its purpose is to be able to provide a response to the end-user
+ * when data was not retrievalable from said external APIs or Databases.
+ */
+
+ /**
+ * ctrlr_online_check_in_action_step_fault()	view shown when an error occurs within the online check-in process
+ *
+ * @param	ARRAY	&$env	reference to global variable '$_app_env'
+ * @param	ARRAY	&$msgs	reference to variable '$main_msgs' where any messages are stored
+ * @param	ARRAY	&$out	reference to variable '$output' which contains content to be rendered
+ * @return	VOID	N/A
+ */
+function ctrlr_online_check_in_action_step_fault(&$env,&$msgs,&$out){
+    # Read code lines
+    $view=_ctrlr_pro_view(__FUNCTION__);
+
+    # Replace text placeholders with entries from the step view
+    $view['mark_up']=str_replace(
+        array(
+            '-TXT-AN-ERROR-OCCURRED-'
+        ),
+        array(
+            lng($view['sxml']->text[$t=0])
+        ),
+        $view['mark_up']
+    );
+
+    # Replace data placeholders with values
+    //Code here
+
+    //Update output to be rendered
+    $out['RPL']['page_title']=($out['RPL']['page_title'].(trim($out['RPL']['page_title'])!==''?': ':'').lng($view['sxml']->page_title));
+    $out['RPL']['cascading_style_sheet'][]=$view['files']['css'];
+    $out['RPL']['javascript'][]=$view['files']['js'];
+    $out['RPL']['view']=str_replace((nl().'_STEP_VIEW_'),$view['mark_up'],$out['RPL']['view']);
+}
+?>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	July 13 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_00
+ * Log-In Screen (*.html view companion file)
+ *-->
+
+<step id="00">
+    <page_title>
+        <english><![CDATA[Log-In]]></english>
+        <french><![CDATA[S'identifier]]></french>
+    </page_title>
+    <text>
+        <english><![CDATA[Log-In]]></english>
+        <french><![CDATA[S'identifier]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Your session has expired. Log-In again to pick up where you left off.]]></english>
+        <french><![CDATA[Votre session a expiré. Log-In à nouveau pour reprendre là où vous l'avez laissé.]]></french>
+    </text>
+    <text>
+        <english><![CDATA[For added safety, please log in to begin or continue the Online Check-In for your fundraising event. You can modify your information, make self-pledges, and more!]]></english>
+		<french><![CDATA[Pour plus de sécurité , s'il vous plaît vous connecter pour commencer ou continuer l' enregistrement en ligne pour votre événement de collecte de fonds . Vous pouvez modifier vos informations , faire des auto- promesses , et plus encore!]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Username]]></english>
+        <french><![CDATA[Nom d'utilisateur]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Password]]></english>
+        <french><![CDATA[Mot de passe]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Log-In]]></english>
+        <french><![CDATA[S'identifier]]></french>
+    </text>
+    <text>
+        <english><![CDATA[You logged out successfully]]></english>
+        <french><![CDATA[Vous vous êtes connecté avec succès]]></french>
+    </text>
+</step>

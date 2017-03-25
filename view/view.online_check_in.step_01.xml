@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 28 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_01
+ * Welcome Screen (*.html view companion file)
+ *-->
+
+<step id="01">
+    <page_title>
+        <english><![CDATA[Welcome to Online Check-In!]]></english>
+        <french><![CDATA[Bienvenue à l'enregistrement en ligne !]]></french>
+    </page_title>
+    <text>
+        <english><![CDATA[Welcome to Online Check-In!]]></english>
+        <french><![CDATA[Bienvenue à Online Check-In!]]></french>
+    </text>
+    <text>
+        <english><![CDATA[This automated check-in process is designed to save you time and make event check-in easier than ever!  Here is what you'll need to do:]]></english>
+        <french><![CDATA[Ce processus d'enregistrement automatisé est conçu pour vous faire gagner du temps et de faire événement check-in plus facile que jamais ! Voici ce que vous devez faire :]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Review your online profile.]]></english>
+        <french><![CDATA[Passez en revue votre profil en ligne .]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Enter emergency contact information.]]></english>
+        <french><![CDATA[Entrez les informations de contact d'urgence .]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Watch a safety video.]]></english>
+        <french><![CDATA[Regarder une vidéo de sécurité .]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Use your credit card to make an instant or delayed self-pledge if you have not reached the fundraising minimum.]]></english>
+        <french><![CDATA[Utilisez votre carte de crédit pour faire un auto- engagement instantané ou retardé si vous ne l'avez pas atteint le minimum de collecte de fonds .]]></french>
+    </text>
+    <text>
+        <english><![CDATA[]]></english>
+        <french><![CDATA[]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Your event materials will be mailed to you if you complete Online Check-In by May 30th, 2016. After this time, your event materials will be available for pick-up onsite on Saturday morning June 11th.]]></english>
+        <french><![CDATA[Votre matériel d'événements seront envoyés à vous si vous avez terminé l'enregistrement en ligne de 7 Juin , 2016. Après cette période, vos documents d'événements seront disponibles pour le ramassage sur place le samedi matin 11ème Juin .]]></french>
+    </text>
+    <text>
+        <english><![CDATA[We are only able to mail check-in packets to Canadian addresses.  If you live outside Canada, your packet will be available for easy pick-up on Saturday morning.]]></english>
+        <french><![CDATA[Nous ne pouvons envoyer des paquets check -in aux adresses canadiennes . Si vous habitez à l'extérieur du Canada , votre paquet sera disponible pour faciliter pick-up le samedi matin ]]></french>
+    </text>
+    <text>
+        <english><![CDATA[]]></english>
+        <french><![CDATA[]]></french>
+    </text>
+    <text>
+        <english><![CDATA[]]></english>
+        <french><![CDATA[]]></french>
+    </text>
+    <text>
+        <english><![CDATA[]]></english>
+        <french><![CDATA[]]></french>
+    </text>
+</step>

@@ -1,0 +1,180 @@
+76.29.136.172 : 03/10/2016 09:57:11 PM : ctrlr_online_check_in_pri_step($env,$main_msgs,$output);
+76.29.136.172 : 03/10/2016 09:57:11 PM : /var/www/vhosts/onlinecheckin.me/httpdocs/cfowca/ctrlr/ctrlr.online_check_in.step_08.abstract
+76.29.136.172 : 03/10/2016 09:57:11 PM : ctrlr_online_check_in_action_step_08($env,$msgs,$out,true);
+76.29.136.172 : 03/10/2016 09:57:11 PM : /var/www/vhosts/onlinecheckin.me/httpdocs/cfowca/ctrlr/ctrlr.online_check_in.step_08.abstract
+76.29.136.172 : 03/10/2016 09:57:11 PM : ctrlr_online_check_in_action_step_08($env,$msgs,$out);
+76.29.136.172 : 03/10/2016 09:57:13 PM : 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+76.29.136.172 : 03/10/2016 09:57:46 PM : ctrlr_online_check_in_pri_step($env,$main_msgs,$output);
+76.29.136.172 : 03/10/2016 09:57:46 PM : /var/www/vhosts/onlinecheckin.me/httpdocs/cfowca/ctrlr/ctrlr.online_check_in.step_08.abstract
+76.29.136.172 : 03/10/2016 09:57:46 PM : ctrlr_online_check_in_action_step_08($env,$msgs,$out,true);
+76.29.136.172 : 03/10/2016 09:57:46 PM : /var/www/vhosts/onlinecheckin.me/httpdocs/cfowca/ctrlr/ctrlr.online_check_in.step_08.abstract
+76.29.136.172 : 03/10/2016 09:57:46 PM : ctrlr_online_check_in_action_step_08($env,$msgs,$out);
+76.29.136.172 : 03/10/2016 09:57:48 PM : 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+76.29.136.172 : 03/10/2016 10:00:03 PM : ctrlr_online_check_in_pri_step($env,$main_msgs,$output);
+76.29.136.172 : 03/10/2016 10:00:03 PM : /var/www/vhosts/onlinecheckin.me/httpdocs/cfowca/ctrlr/ctrlr.online_check_in.step_00.abstract
+76.29.136.172 : 03/10/2016 10:00:03 PM : ctrlr_online_check_in_action_step_00($env,$msgs,$out,true);
+76.29.136.172 : 03/10/2016 10:00:03 PM : /var/www/vhosts/onlinecheckin.me/httpdocs/cfowca/ctrlr/ctrlr.online_check_in.step_00.abstract
+76.29.136.172 : 03/10/2016 10:00:03 PM : ctrlr_online_check_in_action_step_00($env,$msgs,$out);
+76.29.136.172 : 03/10/2016 10:00:06 PM : ctrlr_online_check_in_pri_step($env,$main_msgs,$output);
+76.29.136.172 : 03/10/2016 10:00:06 PM : /var/www/vhosts/onlinecheckin.me/httpdocs/cfowca/ctrlr/ctrlr.online_check_in.step_00.abstract
+76.29.136.172 : 03/10/2016 10:00:06 PM : ctrlr_online_check_in_action_step_00($env,$msgs,$out,true);
+76.29.136.172 : 03/10/2016 10:00:07 PM : ctrlr_online_check_in_pri_step($env,$main_msgs,$output);
+76.29.136.172 : 03/10/2016 10:00:07 PM : /var/www/vhosts/onlinecheckin.me/httpdocs/cfowca/ctrlr/ctrlr.online_check_in.step_08.abstract
+76.29.136.172 : 03/10/2016 10:00:07 PM : ctrlr_online_check_in_action_step_08($env,$msgs,$out,true);
+76.29.136.172 : 03/10/2016 10:00:07 PM : /var/www/vhosts/onlinecheckin.me/httpdocs/cfowca/ctrlr/ctrlr.online_check_in.step_08.abstract
+76.29.136.172 : 03/10/2016 10:00:07 PM : ctrlr_online_check_in_action_step_08($env,$msgs,$out);
+76.29.136.172 : 03/10/2016 10:00:09 PM : 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+76.29.136.172 : 03/10/2016 10:03:02 PM : 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+76.29.136.172 : 03/10/2016 10:03:33 PM : Array
+76.29.136.172 : 03/18/2016 08:57:25 AM : xml parse error:
+76.29.136.172 : 03/18/2016 08:58:43 AM : xml parse error:
+76.29.136.172 : 03/18/2016 09:02:24 AM : xml parse error:
+76.29.136.172 : 03/18/2016 09:02:24 AM : Start tag expected, '<' not found
+
+76.29.136.172 : 03/18/2016 09:02:32 AM : xml parse error:
+76.29.136.172 : 03/18/2016 09:13:29 AM : xml parse error:
+76.29.136.172 : 03/18/2016 09:13:38 AM : xml parse error:
+76.29.136.172 : 03/18/2016 09:13:38 AM : Start tag expected, '<' not found
+
+76.29.136.172 : 03/18/2016 09:14:03 AM : xml parse error:
+76.29.136.172 : 03/18/2016 09:14:03 AM : Start tag expected, '<' not found
+
+76.29.136.172 : 03/18/2016 09:14:14 AM : xml parse error:
+76.29.136.172 : 03/18/2016 09:14:14 AM : Start tag expected, '<' not found
+
+76.29.136.172 : 03/18/2016 09:17:03 AM : xml parse error:
+76.29.136.172 : 03/18/2016 09:17:03 AM : Start tag expected, '<' not found
+
+76.29.136.172 : 03/18/2016 09:17:10 AM : xml parse error:
+76.29.136.172 : 03/18/2016 09:17:26 AM : xml parse error:
+76.29.136.172 : 03/18/2016 09:17:26 AM : Start tag expected, '<' not found
+
+76.29.136.172 : 03/18/2016 09:17:41 AM : xml parse error:
+76.29.136.172 : 03/18/2016 09:17:41 AM : Start tag expected, '<' not found
+
+76.29.136.172 : 03/18/2016 09:17:54 AM : xml parse error:
+76.29.136.172 : 03/22/2016 09:54:28 AM : xml parse error:
+76.29.136.172 : 03/22/2016 09:54:28 AM : Start tag expected, '<' not found
+
+76.29.136.172 : 03/22/2016 09:57:09 AM : xml parse error:
+198.96.180.245 : 04/21/2016 11:02:59 AM : xml parse error:
+167.92.67.10 : 04/21/2016 11:30:37 AM : xml parse error:
+167.92.67.10 : 04/21/2016 11:30:37 AM : Start tag expected, '<' not found
+
+142.205.241.254 : 04/21/2016 11:31:40 AM : xml parse error:
+142.205.241.254 : 04/21/2016 11:31:40 AM : Start tag expected, '<' not found
+
+142.245.59.9 : 04/21/2016 11:32:28 AM : xml parse error:
+142.245.59.9 : 04/21/2016 11:32:28 AM : Start tag expected, '<' not found
+
+66.46.247.162 : 04/21/2016 11:34:12 AM : xml parse error:
+66.46.247.162 : 04/21/2016 11:34:12 AM : Start tag expected, '<' not found
+
+167.92.67.10 : 04/21/2016 11:34:37 AM : xml parse error:
+167.92.67.10 : 04/21/2016 11:34:37 AM : Start tag expected, '<' not found
+
+167.92.67.10 : 04/21/2016 11:35:12 AM : xml parse error:
+167.92.67.10 : 04/21/2016 11:35:12 AM : Start tag expected, '<' not found
+
+192.186.70.58 : 04/21/2016 11:36:38 AM : xml parse error:
+192.186.70.58 : 04/21/2016 11:36:38 AM : Start tag expected, '<' not found
+
+207.46.13.100 : 04/29/2016 03:17:34 PM : xml parse error:
+207.46.13.100 : 04/29/2016 03:17:34 PM : Start tag expected, '<' not found
+
+173.206.249.202 : 04/29/2016 03:25:00 PM : xml parse error:
+173.206.249.202 : 04/29/2016 03:25:00 PM : Start tag expected, '<' not found
+
+173.206.249.202 : 04/29/2016 03:25:19 PM : xml parse error:
+173.206.249.202 : 04/29/2016 03:25:19 PM : Start tag expected, '<' not found
+
+173.206.249.202 : 04/29/2016 03:26:52 PM : xml parse error:
+173.206.249.202 : 04/29/2016 03:26:52 PM : Start tag expected, '<' not found
+
+173.206.249.202 : 04/29/2016 03:26:57 PM : xml parse error:
+173.206.249.202 : 04/29/2016 03:26:57 PM : Start tag expected, '<' not found
+
+64.229.44.246 : 04/29/2016 03:27:15 PM : xml parse error:
+64.229.44.246 : 04/29/2016 03:27:15 PM : Start tag expected, '<' not found
+
+173.206.249.202 : 04/29/2016 03:27:15 PM : xml parse error:
+173.206.249.202 : 04/29/2016 03:27:15 PM : Start tag expected, '<' not found
+
+64.229.44.246 : 04/29/2016 03:27:28 PM : xml parse error:
+64.229.44.246 : 04/29/2016 03:27:28 PM : Start tag expected, '<' not found
+
+173.206.249.202 : 04/29/2016 03:28:29 PM : xml parse error:
+173.206.249.202 : 04/29/2016 03:28:29 PM : Start tag expected, '<' not found
+
+173.206.249.202 : 04/29/2016 03:28:40 PM : xml parse error:
+173.206.249.202 : 04/29/2016 03:28:40 PM : Start tag expected, '<' not found
+
+173.206.249.202 : 04/29/2016 03:28:58 PM : xml parse error:
+173.206.249.202 : 04/29/2016 03:28:58 PM : Start tag expected, '<' not found
+
+64.229.44.246 : 04/29/2016 03:29:24 PM : xml parse error:
+64.229.44.246 : 04/29/2016 03:29:24 PM : Start tag expected, '<' not found
+
+64.229.44.246 : 04/29/2016 03:29:39 PM : xml parse error:
+64.229.44.246 : 04/29/2016 03:29:39 PM : Start tag expected, '<' not found
+
+64.229.44.246 : 04/29/2016 03:30:00 PM : xml parse error:
+64.229.44.246 : 04/29/2016 03:30:00 PM : Start tag expected, '<' not found
+
+64.229.44.246 : 04/29/2016 03:31:34 PM : xml parse error:
+64.229.44.246 : 04/29/2016 03:31:34 PM : Start tag expected, '<' not found
+
+64.229.44.246 : 04/29/2016 03:31:42 PM : xml parse error:
+64.229.44.246 : 04/29/2016 03:31:42 PM : Start tag expected, '<' not found
+
+64.229.44.246 : 04/29/2016 03:32:27 PM : xml parse error:
+64.229.44.246 : 04/29/2016 03:32:27 PM : Start tag expected, '<' not found
+

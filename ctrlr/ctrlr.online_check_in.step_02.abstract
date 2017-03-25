@@ -1,0 +1,185 @@
+<?php
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 29 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_02:
+ * Registration Review (abstract file, not to be used by itself)
+ *
+ * Reviews the end-user's contact information,
+ * allowing them to make changes, and once filled,
+ * allows the end-user to proceed with the online check-in process
+ */
+
+/**
+ * ctrlr_online_check_in_action_step_02()	handles step_02 within the online check-in process
+ *
+ * @param	ARRAY	&$env	reference to global variable '$_app_env'
+ * @param	ARRAY	&$msgs	reference to variable '$main_msgs' where any messages are stored
+ * @param	ARRAY	&$out	reference to variable '$output' which contains content to be rendered
+ * @param	BOOLEAN	&$CRUD	specifies if the action is being called in a CReate/Update/Delete compacity
+ * @return	VOID	N/A
+ */
+function ctrlr_online_check_in_action_step_02(&$env,&$msgs,&$out,$CRUD=FALSE){
+    if($CRUD===TRUE){
+        if($env['flags']['is_CRUD']===TRUE){
+            # CReate / Update / Delete code lines
+            $env['request'][]=array(
+                'url'=>$env['API']['URL']['CONS'],
+                'fields'=>array(
+                    'api_key'=>$env['API']['KEY'],
+                    'v'=>$env['API']['VER'],
+                    'method'=>'update',
+                    'fr_id'=>@$env['$_get']['fr_id'],
+                    $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                    'name.first'=>$env['$_post']['name_first'],
+                    'name.last'=>$env['$_post']['name_last'],
+                    'primary_address.street1'=>$env['$_post']['primary_street1'],
+                    'primary_address.street2'=>$env['$_post']['primary_street2'],
+                    'primary_address.city'=>$env['$_post']['primary_city'],
+                    'primary_address.state'=>$env['$_post']['primary_state'],
+                    'primary_address.zip'=>$env['$_post']['primary_zip'],
+                    'gender'=>@$env['$_post']['gender']
+                )
+            );
+
+            //CRUD error checking
+            $usr_idx=_ctrlr_pro_curl($env,$msgs);
+            if(($env['request'][$usr_idx]['response']['sxml'] instanceof SimpleXMLElement)===FALSE ||
+               ($env['request'][$usr_idx]['response']['sxml']->getName()==='updateConsResponse' && strtoupper($env['request'][$usr_idx]['response']['sxml']->message)!=='USER UPDATED.')){
+                $msgs['error'][]='whoops, updating didn\'t work!!!';
+            }
+        }
+    }
+    else if($view=_ctrlr_pro_view(__FUNCTION__)){
+        # Read code lines
+        $step_02['is_view_data_retrieved']=&$env['flags']['is_view_data_retrieved'];
+
+        $env['request'][]=array(
+            'url'=>$env['API']['URL']['CONS'],
+            'fields'=>array(
+                'api_key'=>$env['API']['KEY'],
+                'v'=>$env['API']['VER'],
+                'method'=>'getUser',
+                'fr_id'=>@$env['$_get']['fr_id'],
+                $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                'fields'=>'name.first,name.last,primary_address.street1,primary_address.street2,primary_address.city,primary_address.state,primary_address.zip,gender'
+            )
+        );
+
+        $gu_idx=_ctrlr_pro_curl($env,$msgs);
+        if(@$env['request'][$gu_idx]['response']['sxml'] instanceof SimpleXMLElement && $env['request'][$gu_idx]['response']['sxml']->getName()==='getConsResponse'){
+            $env['request'][]=array(
+                'url'=>$env['API']['URL']['TR'],
+                'fields'=>array(
+                    'api_key'=>$env['API']['KEY'],
+                    'v'=>$env['API']['VER'],
+                    'method'=>'getParticipationType',
+                    'fr_id'=>@$env['$_get']['fr_id'],
+                    $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN']
+                )
+            );
+
+            $gpt_idx=_ctrlr_pro_curl($env,$msgs);
+            if(@$env['request'][$gpt_idx]['response']['sxml'] instanceof SimpleXMLElement){
+                $env['request'][]=array(
+                    'url'=>$env['API']['URL']['TR'],
+                    'fields'=>array(
+                        'api_key'=>$env['API']['KEY'],
+                        'v'=>$env['API']['VER'],
+                        'method'=>'getTeam',
+                        'fr_id'=>@$env['$_get']['fr_id'],
+                        $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN']
+                    )
+                );
+
+                $gt_idx=_ctrlr_pro_curl($env,$msgs);
+                if(@$env['request'][$gt_idx]['response']['sxml'] instanceof SimpleXMLElement){
+                    $step_02['is_view_data_retrieved']=true;
+                }
+            }
+        }
+
+        if($step_02['is_view_data_retrieved']===TRUE || $env['flags']['is_step_view_on_error']===TRUE){
+            # Replace text placeholders with entries from the step view
+            $view['mark_up']=str_replace(
+                array(
+                    '-TXT-HEADER-',
+                    '-TXT-GET-STARTED-',
+                    '-TXT-NOTE-',
+                    '-TXT-NAME-FIRST-',
+                    '-TXT-NAME-LAST-',
+                    '-TXT-PRIMARY-STREET1-',
+                    '-TXT-PRIMARY-STREET2-',
+                    '-TXT-PRIMARY-CITY-',
+                    '-TXT-PRIMARY-STATE-',
+                    (nl().'-OPTIONS-USA-'),
+                    '-TXT-PRIMARY-ZIP-',
+                    '-TXT-PARTICIPATION-TYPE-NAME-',
+                    '-TXT-TEAM-NAME-',
+                    '-TXT-GENDER-',
+                    '-TXT-MALE-',
+                    '-TXT-FEMALE-',
+                    '-DROPDOWN-LANGUGES-'
+                ),
+                array(
+                    lng($view['sxml']->text[$t=0]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($env['model']->form->state_providence->labels->$env['data']['oci']['country']),
+                    str_replace("\n",("\n".t(7)),rtrim($env['model']->form->state_providence->options->$env['data']['oci']['country'])),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    $env['lang_select']
+                ),
+                $view['mark_up']
+            );
+
+            # Replace data placeholders with values
+            $view['mark_up']=str_replace(
+                array(
+                    '_NAME_FIRST_',
+                    '_NAME_LAST_',
+                    '_PRIMARY_STREET1_',
+                    '_PRIMARY_STREET2_',
+                    '_PRIMARY_CITY_',
+                    ('<option value="'.@$env['request'][$gu_idx]['response']['sxml']->primary_address->state.'">'),
+                    '_PRIMARY_ZIP_',
+                    '_PARTICIPATION_TYPE_NAME_',
+                    '_TEAM_NAME_',
+                    ('name="gender" value="'.@$env['request'][$gu_idx]['response']['sxml']->gender.'"')
+                ),
+                array(
+                    @$env['request'][$gu_idx]['response']['sxml']->name->first,
+                    @$env['request'][$gu_idx]['response']['sxml']->name->last,
+                    @$env['request'][$gu_idx]['response']['sxml']->primary_address->street1,
+                    @$env['request'][$gu_idx]['response']['sxml']->primary_address->street2,
+                    @$env['request'][$gu_idx]['response']['sxml']->primary_address->city,
+                    ('<option value="'.@$env['request'][$gu_idx]['response']['sxml']->primary_address->state.'" selected>'),
+                    @$env['request'][$gu_idx]['response']['sxml']->primary_address->zip,
+                    lng($env['model']->participation,'type_text',@$env['request'][$gpt_idx]['response']['sxml']->participationType->name),
+                    @$env['request'][$gt_idx]['response']['sxml']->team->name,
+                    ('name="gender" value="'.@$env['request'][$gu_idx]['response']['sxml']->gender.'" checked="checked"')
+                ),
+                $view['mark_up']
+            );
+
+            //Update output to be rendered
+            $out['RPL']['page_title'].=lng($view['sxml']->page_title);
+            $out['RPL']['cascading_style_sheet'][]=$view['files']['css'];
+            $out['RPL']['javascript'][]=$view['files']['js'];
+            $out['RPL']['view']=str_replace((nl().'_STEP_VIEW_'),$view['mark_up'],$out['RPL']['view']);
+        }
+    }
+}
+?>

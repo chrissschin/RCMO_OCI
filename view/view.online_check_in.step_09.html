@@ -1,0 +1,64 @@
+
+            <div id="step_09" class="content">
+                <div class="lang_div">Language -DROPDOWN-LANGUGES-   <input type="button" style=" font-size: 10px" value="-TXT-LOG-OUT-" onclick="_oci.main.user_logout();" data-oci-main-form="validate"/></div><br>
+                <script type="text/javascript">
+                _oci.step_09.tentmate.txt={
+                    ta_default:'-TXT-P-TENTING-MESSAGE-',
+                    send_request:'-TXT-SEND-REQUEST-'
+                };
+                </script>
+                <h1>-TXT-HEADER-</h1>
+                <div class="line_margin_TENTMATE_SELECTED_CLASS_">-TXT-REQUEST-FILED-</div>
+                <div class="line_margin_TENTMATE_CHOOSE_CLASS_">
+                    <div class="line_margin_sub">-TXT-STAYING-AT-CAMP-</div>
+                    <div class="line_margin_sub">-TXT-TEAM-MEMBER-</div>
+                    <div class="line_margin_sub">-TXT-NEED-HELP-</div>
+                    <div class="line_margin_sub">-TXT-CHOOSE-TENTING-OPTION-</div>
+                </div>
+                <div class="line_margin">
+                    <span class="field_text">_TENTMATE_STATUS_</span>
+                </div>
+                <div id="tentmate_choose" class="line_margin_TENTMATE_CHOOSE_CLASS_">
+                    <div id="quick_choice">
+                        <input type="button" value="-TXT-AUTO-SELECT-" onclick="_oci.main.submit('step_09',this,3);"/>
+                        <input type="button" value="-TXT-NOT-NEEDED-" onclick="_oci.main.submit('step_09',this,2);"/>
+                    </div>
+                    <div class="line_margin">
+                        <span>-TXT-ENTER-CRITERIA-</span>
+                        <div class="line_margin_sub">
+                              <label for="search_email">-TXT-BY-EMAIL-</label>
+                              <input id="search_email" type="email" name="search_email"/>
+                        </div>
+                        <div class="line_margin_sub">
+                            <label for="search_first_name">-TXT-BY-F-NAME-</label>
+                            <input id="search_first_name" type="text" name="search_first_name"/>
+                        </div>
+                        <div class="line_margin_sub">
+                            <label for="search_last_name">-TXT-BY-L-NAME-</label>
+                            <input id="search_last_name" type="text" name="search_last_name"/>
+                        </div>
+                        <div class="line_margin_sub">
+                            <input type="button" value="-TXT-SEARCH-TENTMATE-" onclick="_oci.step_09.tentmate.search(this);"/>
+                        </div>
+                        <div class="line_margin_sub">
+                            <textarea name="tentmate_message" onfocus="_oci.step_09.tentmate.ta_toggle(this);" onblur="_oci.step_09.tentmate.ta_toggle(this);">-TXT-P-TENTING-MESSAGE-</textarea>
+                        </div>
+                        <table id="search_results" class="line_margin_sub">
+                            <thead>
+                                <tr>
+                                    <th>-TXT-P-NAME-</th><th>-TXT-P-FRS-</th><th>-TXT-P-SR-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="3">
+                                        <div id="loading" class="responsive_wrapper">
+_ANIMATION_LOADING_
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>

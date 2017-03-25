@@ -1,0 +1,212 @@
+<?php
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 29 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_09:
+ * Tent Assignment (abstract file, not to be used by itself)
+ *
+ * If an option for the event,
+ * allows the end-user to choose their tent mate, once chosen,
+ * allows them to proceed with the online check-in process
+ */
+
+ /**
+ * ctrlr_online_check_in_action_step_09()	handles step_09 within the online check-in process
+ *
+ * @param	ARRAY	&$env	reference to global variable '$_app_env'
+ * @param	ARRAY	&$msgs	reference to variable '$main_msgs' where any messages are stored
+ * @param	ARRAY	&$out	reference to variable '$output' which contains content to be rendered
+ * @param	BOOLEAN	&$CRUD	specifies if the action is being called in a CReate/Update/Delete compacity
+ * @return	VOID	N/A
+ */
+function ctrlr_online_check_in_action_step_09(&$env,&$msgs,&$out,$CRUD=FALSE){
+    if($CRUD===TRUE){
+        if($env['flags']['is_CRUD']===TRUE){
+            //Only update if a NEXT form submit was from a tenting status request
+            if(is_numeric($env['$_post']['page']['next'])){
+                # CReate / Update / Delete code lines
+                $env['request'][]=array(
+                    'url'=>$env['API']['URL']['TR'],
+                    'fields'=>array(
+                        'api_key'=>$env['API']['KEY'],
+                        'v'=>$env['API']['VER'],
+                        'method'=>'updateTentingStatus',
+                        'fr_id'=>@$env['$_get']['fr_id'],
+                        $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                        'tentmate_id'=>@$env['$_post']['tentmate_id'],
+                        'update_type'=>(string)$env['model']->tentmate->update[(int)$env['$_post']['page']['next']],
+                        'message'=>@$env['$_post']['tentmate_message']
+                    )
+                );
+
+                //CRUD error checking
+                $uts_idx=_ctrlr_pro_curl($env,$msgs);
+                if($env['request'][$uts_idx]['response']['sxml']->getName()==='errorResponse'){
+                    //$env['$_post']['tentmate_id'] is empty when updating the logged-in end-user's tenting status, remove:
+                    //1) error code (2639) which seems to be the response from a successful update of the tenting status to: "random" (Random tent), and,
+                    //2) error code (2641) which seems to be the response from a successful update of the tenting status to: "decline" (No tent required)
+                    if(trim(@$env['$_post']['tentmate_id'])==='' && strstr('|2639|2641|',('|'.@$env['request'][$uts_idx]['response']['sxml']->code.'|'))){
+                        array_pop($msgs['error']);
+                    }
+                }
+                else{
+                    //I mapped the update type to the tentmate status value where possible, correlate the tentmate status response to the update type performed
+                    if($env['$_post']['page']['next']==='5'){
+                        $tms='9';
+                    }
+                    else if($env['$_post']['page']['next']==='6'){
+                        $tms='1';
+                    }
+                    else{
+                        $tms=$env['$_post']['page']['next'];
+                    }
+
+                    if(($env['request'][$uts_idx]['response']['sxml'] instanceof SimpleXMLElement)===FALSE ||
+                       ($env['request'][$uts_idx]['response']['sxml']->getName()==='updateTentingStatusResponse' && (string)$env['request'][$uts_idx]['response']['sxml']->tentmateStatus!==$tms)){
+                        $msgs['error'][]='whoops, updating didn\'t work!!!';
+                    }
+                }
+            }
+        }
+    }
+    else if($env['flags']['is_AJAX'] && strstr(('|'.@$env['$_get']['ajax'].'|'),'|tent_mate_search|')){
+        # AJAX code lines
+        $env['request'][]=array(
+            'url'=>$env['API']['URL']['TR'],
+            'fields'=>array(
+                'api_key'=>$env['API']['KEY'],
+                'v'=>$env['API']['VER'],
+                'method'=>'getTentingSearch',
+                'fr_id'=>@$env['$_get']['fr_id'],
+                $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                'search_first_name'=>@$env['$_get']['search_first_name'],
+                'search_last_name'=>@$env['$_get']['search_last_name'],
+                'search_email'=>@$env['$_get']['search_email']
+            )
+        );
+
+        $gts_idx=_ctrlr_pro_curl($env,$msgs);
+        if(@$env['request'][$gts_idx]['response']['sxml'] instanceof SimpleXMLElement && $env['request'][$gts_idx]['response']['sxml']->getName()==='getTentingSearchResponse'){
+            //For XPath usage, all namespaces must have a prefix. Encase in a logic check so when debugging no error is thrown.
+            if(@$env['request'][$gts_idx]['response']['sxml'] instanceof SimpleXMLElement){
+                ctrlr_online_check_in_pro_xpath_register_namespace($env['request'][$gts_idx]['response']['sxml']);
+            }
+
+            $env['data']['ajax'] ='[';
+            foreach(@$env['request'][$gts_idx]['response']['sxml']->xpath('./convio:record[convio:consId!=\'\']') as $ts_rec_id=>$ts_rec){
+                $env['data']['ajax'].=(($ts_rec_id?',':'').'{tm_id:\''.$ts_rec->consId.'\',name:\''.htmlspecialchars($ts_rec->name->first.' '.$ts_rec->name->last).'\',status:\''.htmlspecialchars(ctrlr_online_check_in_pro_get_tentmate_status_text($env,$ts_rec->tentmateStatus)).'\',page:\''.urlencode($ts_rec->personalPageUrl).'\'}');
+            }
+            $env['data']['ajax'].=']';
+        }
+    }
+    else if($view=_ctrlr_pro_view(__FUNCTION__)){
+        # Read code lines
+        $step_09['is_view_data_retrieved']=&$env['flags']['is_view_data_retrieved'];
+
+        $env['request'][]=array(
+            'url'=>$env['API']['URL']['TR'],
+            'fields'=>array(
+                'api_key'=>$env['API']['KEY'],
+                'v'=>$env['API']['VER'],
+                'method'=>'getRegistration',
+                'fr_id'=>@$env['$_get']['fr_id'],
+                $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN']
+            )
+        );
+
+        $gr_idx=_ctrlr_pro_curl($env,$msgs);
+        if(@$env['request'][$gr_idx]['response']['sxml'] instanceof SimpleXMLElement && $env['request'][$gr_idx]['response']['sxml']->getName()==='getRegistrationResponse'){
+            $step_09['is_view_data_retrieved']=true;
+        }
+
+        if($step_09['is_view_data_retrieved']===TRUE || $env['flags']['is_step_view_on_error']===TRUE){
+            //Hide the PREVIOUS button once they come to this step, and, by default hide the NEXT button thereby forcing the end-user to complete required action(s)
+            $env['flags']['is_hiding_nav']['previous']=true;
+            $env['flags']['is_hiding_nav']['next']=true;
+
+            //Set behavior for allow tent mate selection
+            $tentmate_selected_class=' not_displayed';
+            $tentmate_status_text='';
+            $tentmate_choose_class='';
+            if(intVal(@$env['request'][$gr_idx]['response']['sxml']->registration->tentmateStatus)>=2){
+                $env['flags']['is_hiding_nav']['next']=false;
+                $tentmate_selected_class='';
+                $tentmate_status_text=ctrlr_online_check_in_pro_get_tentmate_status_text($env,@$env['request'][$gr_idx]['response']['sxml']->registration->tentmateStatus);
+                $tentmate_choose_class=' not_displayed';
+            }
+
+            # Replace text placeholders with entries from the step view
+            $view['mark_up']=str_replace(
+                array(
+                    '-TXT-HEADER-',
+                    '-TXT-REQUEST-FILED-',
+                    '-TXT-STAYING-AT-CAMP-',
+                    '-TXT-TEAM-MEMBER-',
+                    '-TXT-NEED-HELP-',
+                    '-TXT-CHOOSE-TENTING-OPTION-',
+                    '-TXT-AUTO-SELECT-',
+                    '-TXT-NOT-NEEDED-',
+                    '-TXT-ENTER-CRITERIA-',
+                    '-TXT-BY-EMAIL-',
+                    '-TXT-BY-F-NAME-',
+                    '-TXT-BY-L-NAME-',
+                    '-TXT-SEARCH-TENTMATE-',
+                    '-TXT-P-TENTING-MESSAGE-',
+                    '-TXT-P-NAME-',
+                    '-TXT-P-FRS-',
+                    '-TXT-P-SR-',
+                    '-TXT-SEND-REQUEST-',
+                    '-DROPDOWN-LANGUGES-'
+                ),
+                array(
+                    lng($view['sxml']->text[$t=0]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    $env['lang_select']
+                ),
+                $view['mark_up']
+            );
+
+            # Replace data placeholders with values
+            $view['mark_up']=str_replace(
+                array(
+                    '_TENTMATE_SELECTED_CLASS_',
+                    '_TENTMATE_CHOOSE_CLASS_',
+                    '_TENTMATE_STATUS_',
+                    (nl().'_ANIMATION_LOADING_')
+                ),
+                array(
+                    $tentmate_selected_class,
+                    $tentmate_choose_class,
+                    $tentmate_status_text,
+                    str_replace("\n",("\n".t(11)),rtrim($env['model']->animation->loading->style[0]))
+                ),
+                $view['mark_up']
+            );
+
+            //Update output to be rendered
+            $out['RPL']['page_title'].=lng($view['sxml']->page_title);
+            $out['RPL']['cascading_style_sheet'][]=$view['files']['css'];
+            $out['RPL']['javascript'][]=$view['files']['js'];
+            $out['RPL']['view']=str_replace((nl().'_STEP_VIEW_'),$view['mark_up'],$out['RPL']['view']);
+        }
+    }
+}
+?>

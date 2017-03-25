@@ -1,0 +1,276 @@
+<?php
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 29 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_10:
+ * Check-In Complete (abstract file, not to be used by itself)
+ *
+ * Simple review of the end-user's online check-in process,
+ * allows the user to print the page or return to a pre-designated page
+ */
+
+ /**
+ * ctrlr_online_check_in_action_step_10()	handles step_10 within the online check-in process
+ *
+ * @param	ARRAY	&$env	reference to global variable '$_app_env'
+ * @param	ARRAY	&$msgs	reference to variable '$main_msgs' where any messages are stored
+ * @param	ARRAY	&$out	reference to variable '$output' which contains content to be rendered
+ * @param	BOOLEAN	&$CRUD	specifies if the action is being called in a CReate/Update/Delete compacity
+ * @return	VOID	N/A
+ */
+function ctrlr_online_check_in_action_step_10(&$env,&$msgs,&$out,$CRUD=FALSE){
+    if($CRUD===TRUE){
+        if($env['flags']['is_CRUD']===TRUE){
+            # CReate / Update / Delete code lines
+            // Code here
+        }
+    }
+    else if($view=_ctrlr_pro_view(__FUNCTION__)){
+        # Read code lines
+        $step_10['is_view_data_retrieved']=&$env['flags']['is_view_data_retrieved'];
+
+        $env['request'][]=array(
+            'url'=>$env['API']['URL']['CONS'],
+            'fields'=>array(
+                'api_key'=>$env['API']['KEY'],
+                'v'=>$env['API']['VER'],
+                'method'=>'getUser',
+                'fr_id'=>@$env['$_get']['fr_id'],
+                $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                'fields'=>'name.first,name.last,primary_address.street1,primary_address.street2,primary_address.city,primary_address.state,primary_address.zip,gender,email'
+            )
+        );
+
+        $gu_idx=_ctrlr_pro_curl($env,$msgs);
+        if(@$env['request'][$gu_idx]['response']['sxml'] instanceof SimpleXMLElement && $env['request'][$gu_idx]['response']['sxml']->getName()==='getConsResponse'){
+            $env['request'][]=array(
+                'url'=>$env['API']['URL']['TR'],
+                'fields'=>array(
+                    'api_key'=>$env['API']['KEY'],
+                    'v'=>$env['API']['VER'],
+                    'method'=>'getSurveyResponses',
+                    'fr_id'=>@$env['$_get']['fr_id'],
+                    $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                    'survey_id'=>$env['API']['SURVEY']['ID'],
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][6])=>'TRUE',
+                    'requested_only'=>'TRUE'
+                )
+            );
+
+            $gsr_idx=_ctrlr_pro_curl($env,$msgs);
+            if(@$env['request'][$gsr_idx]['response']['sxml'] instanceof SimpleXMLElement && $env['request'][$gsr_idx]['response']['sxml']->getName()==='getSurveyResponsesResponse'){
+                $env['request'][]=array(
+                    'url'=>$env['API']['URL']['TR'],
+                    'fields'=>array(
+                        'api_key'=>$env['API']['KEY'],
+                        'v'=>$env['API']['VER'],
+                        'method'=>'getParticipationType',
+                        'fr_id'=>@$env['$_get']['fr_id'],
+                        $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN']
+                    )
+                );
+
+                $gpt_idx=_ctrlr_pro_curl($env,$msgs);
+                if(@$env['request'][$gpt_idx]['response']['sxml'] instanceof SimpleXMLElement){
+            /*   By Kevin:   disable calling getteam name  function 
+                    $env['request'][]=array(
+                        'url'=>$env['API']['URL']['TR'],
+                        'fields'=>array(
+                            'api_key'=>$env['API']['KEY'],
+                            'v'=>$env['API']['VER'],
+                            'method'=>'getTeam',
+                            'fr_id'=>@$env['$_get']['fr_id'],
+                            $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN']
+                        )
+                    );
+
+                    $gt_idx=_ctrlr_pro_curl($env,$msgs);
+                    if(@$env['request'][$gt_idx]['response']['sxml'] instanceof SimpleXMLElement){
+                  
+                     */
+                        $env['request'][]=array(
+                            'url'=>$env['API']['URL']['TR'],
+                            'fields'=>array(
+                                'api_key'=>$env['API']['KEY'],
+                                'v'=>$env['API']['VER'],
+                                'method'=>'getRegistration',
+                                'fr_id'=>@$env['$_get']['fr_id'],
+                                $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN']
+                            )
+                        );
+
+                        $gr_idx=_ctrlr_pro_curl($env,$msgs);
+                        if(@$env['request'][$gr_idx]['response']['sxml'] instanceof SimpleXMLElement && $env['request'][$gr_idx]['response']['sxml']->getName()==='getRegistrationResponse'){
+                            $env['request'][]=array(
+                                'url'=>$env['API']['URL']['TR'],
+                                'fields'=>array(
+                                    'api_key'=>$env['API']['KEY'],
+                                    'v'=>$env['API']['VER'],
+                                    'method'=>'getFundraisingResults',
+                                    'fr_id'=>@$env['$_get']['fr_id'],
+                                    $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                                    'cons_id'=>(string)@$env['request'][$gr_idx]['response']['sxml']->registration->consId
+                                )
+                            );
+
+                            $gfr_idx=_ctrlr_pro_curl($env,$msgs);
+                            if(@$env['request'][$gfr_idx]['response']['sxml'] instanceof SimpleXMLElement && $env['request'][$gfr_idx]['response']['sxml']->getName()==='getFundraisingResponse'){
+                                //If check-in status is empty then don't continue, otherwise, if the check-in status is not 'committed' or 'paid' then set to 'complete'
+                                if((string)$env['request'][$gr_idx]['response']['sxml']->registration->checkinStatus!==''){
+                                    if((string)@$env['request'][$gr_idx]['response']['sxml']->registration->checkinStatus!==(string)$env['model']->check_in->status[2] &&
+                                       (string)@$env['request'][$gr_idx]['response']['sxml']->registration->checkinStatus!==(string)$env['model']->check_in->status[3]){
+                                        $env['request'][]=array(
+                                            'url'=>$env['API']['URL']['TR'],
+                                            'fields'=>array(
+                                                'api_key'=>$env['API']['KEY'],
+                                                'v'=>$env['API']['VER'],
+                                                'method'=>'updateRegistration',
+                                                'fr_id'=>@$env['$_get']['fr_id'],
+                                                $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                                                'checkin_status'=>(string)$env['model']->check_in->status[4]
+                                            )
+                                        );
+
+                                        //CRUD error checking
+                                        $ur_index=_ctrlr_pro_curl($env,$msgs);
+                                        if(($env['request'][$ur_index]['response']['sxml'] instanceof SimpleXMLElement)===FALSE ||
+                                           ($env['request'][$ur_index]['response']['sxml']->getName()==='updateRegistrationResponse' && strtoupper($env['request'][$ur_index]['response']['sxml']->success)!=='TRUE')){
+                                            $msgs['error'][]='whoops, updating didn\'t work!!!';
+                                        }
+                                    }
+
+                                    $step_10['is_view_data_retrieved']=(isset($msgs['error'])===FALSE);
+                                }
+                            }
+                        }
+                 //   } // Disabled get team function
+                }
+            }
+        }
+
+        if($step_10['is_view_data_retrieved']===TRUE || $env['flags']['is_step_view_on_error']===TRUE){
+            //Hide the PREVIOUS and NEXT button once they come to this step
+            $env['flags']['is_hiding_nav']['previous']=true;
+            $env['flags']['is_hiding_nav']['next']=true;
+
+            //For XPath usage, all namespaces must have a prefix. Encase in a logic check so when debugging no error is thrown.
+            if(@$env['request'][$gsr_idx]['response']['sxml'] instanceof SimpleXMLElement){
+                ctrlr_online_check_in_pro_xpath_register_namespace($env['request'][$gsr_idx]['response']['sxml']);
+            }
+
+            //Get respective XML elements from the response
+            $step_10['upsell_accepted']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][6].'\']'):NULL);
+
+            $step_10['data']['amt_raised']=number_format(((float)@$env['request'][$gfr_idx]['response']['sxml']->fundraisingRecord->amountRaised/100.0),2);
+
+            # Replace text placeholders with entries from the step view
+            $view['mark_up']=str_replace(
+                array(
+                    '-TXT-HEADER-1-',
+                    '-TXT-HEADER-2-',
+                    '-TXT-CURRENCY-SYMBOL-',
+                    '-TXT-AMOUNT-RAISED-',
+                    '-TXT-NAME-FIRST-',
+                    '-TXT-NAME-LAST-',
+                    '-TXT-PRIMARY-STREET1-',
+                    '-TXT-PRIMARY-STREET2-',
+                    '-TXT-PRIMARY-CITY-',
+                    '-TXT-PRIMARY-STATE-',
+                    '-TXT-PRIMARY-ZIP-',
+                    '-TXT-GENDER-',
+                    '-TXT-UPSELL-PRE-REGISTER-',
+                    '-TXT-EMAIL-PRIMARY-ADDRESS-',
+                    '-TXT-PARTICIPATION-TYPE-NAME-',
+                    '-TXT-TEAM-NAME-',
+                    '-TXT-EMERGENCY-NAME-',
+                    '-TXT-EMERGENCY-PHONE-',
+                    '-TXT-TENTMATE-STATUS-',
+                    '-TXT-PRINT-SCREEN-',
+                    '-TXT-PARTICIPATION-CENTER-'
+                ),
+                array(
+                    lng($view['sxml']->text[$t=0]),
+                    lng($view['sxml']->text[++$t]),
+                    $env['model']->currency->symbol->$env['data']['oci']['country'],
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t])
+                ),
+                $view['mark_up']
+            );
+
+            # Replace data placeholders with values
+            $view['mark_up']=str_replace(
+                array(
+                    '_AMOUNT_RAISED_',
+                    '_NAME_FIRST_',
+                    '_NAME_LAST_',
+                    '_PRIMARY_STREET1_',
+                    '_PRIMARY_STREET2_',
+                    '_PRIMARY_CITY_',
+                    '_PRIMARY_STATE_',
+                    '_PRIMARY_ZIP_',
+                    '_GENDER_',
+                    '_UPSELL_PRE_REGISTER_',
+                    '_EMAIL_PRIMARY_ADDRESS_',
+                    '_PARTICIPATION_TYPE_NAME_',
+                    '_TEAM_NAME_',
+                    '_EMERGENCY_NAME_',
+                    '_EMERGENCY_PHONE_',
+                    '_TMS_CLASS_',
+                    '_TENTMATE_STATUS_',
+                    '=URL=PARTICIPATION=CENTER=',
+                    '-DROPDOWN-LANGUGES-'
+                ),
+                array(
+                    @$step_10['data']['amt_raised'],
+                    @$env['request'][$gu_idx]['response']['sxml']->name->first,
+                    @$env['request'][$gu_idx]['response']['sxml']->name->last,
+                    @$env['request'][$gu_idx]['response']['sxml']->primary_address->street1,
+                    @$env['request'][$gu_idx]['response']['sxml']->primary_address->street2,
+                    @$env['request'][$gu_idx]['response']['sxml']->primary_address->city,
+                    @$env['request'][$gu_idx]['response']['sxml']->primary_address->state,
+                    @$env['request'][$gu_idx]['response']['sxml']->primary_address->zip,
+                    ucfirst(strtolower(@$env['request'][$gu_idx]['response']['sxml']->gender)),
+                    (strtoupper(@$step_10['upsell_accepted'][0]->responseValue)!=='NO'?'Yes':'No'),
+                    @$env['request'][$gu_idx]['response']['sxml']->email->primary_address,
+                    lng($env['model']->participation,'type_text',@$env['request'][$gpt_idx]['response']['sxml']->participationType->name),
+                //    @$env['request'][$gt_idx]['response']['sxml']->team->name,
+                    '',
+                    @$env['request'][$gr_idx]['response']['sxml']->registration->emergencyName,
+                    @$env['request'][$gr_idx]['response']['sxml']->registration->emergencyPhone,
+                    (ctrlr_online_check_in_pro_skip_tenting_assignment($env,$msgs,(string)@$env['request'][$gpt_idx]['response']['sxml']->participationType->name)?' not_displayed':''),
+                    ctrlr_online_check_in_pro_get_tentmate_status_text($env,@$env['request'][$gr_idx]['response']['sxml']->registration->tentmateStatus),
+                    urlencode($env['model']->links->url[3]),
+                    $env['lang_select']
+                ),
+                $view['mark_up']
+            );
+
+            //Update output to be rendered
+            $out['RPL']['page_title'].=lng($view['sxml']->page_title);
+            $out['RPL']['cascading_style_sheet'][]=$view['files']['css'];
+            $out['RPL']['javascript'][]=$view['files']['js'];
+            $out['RPL']['view']=str_replace((nl().'_STEP_VIEW_'),$view['mark_up'],$out['RPL']['view']);
+        }
+    }
+}
+?>

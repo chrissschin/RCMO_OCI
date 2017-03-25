@@ -1,0 +1,17 @@
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	July 13 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ */
+
+#_oci > #main > #step_00 input[type=text],
+#_oci > #main > #step_00 input[type=password]{
+    width: 69%;
+}
+
+#_oci > #main > #step_00 > #session_expired{
+    padding: 2%;
+}
+#_oci > #main > #step_00 > #Log_In{
+    text-align: center;
+}

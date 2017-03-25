@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--*********************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 28 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_fault:
+ * Fault Page (*.html view companion file)
+ *-->
+<step id="fault">
+    <page_title>
+        <english><![CDATA[An error has occured]]></english>
+       <french><![CDATA[Une erreur est survenue]]></french>
+    </page_title>
+    <text>
+       <english><![CDATA[An error has occurred and we were not able to process your request, please try again at a later time. Thank you.]]></english>
+       <french><![CDATA[Une erreur est survenue et nous étions pas en mesure de traiter votre demande , s'il vous plaît essayer à nouveau plus tard . Je vous remercie.]]></french>
+    </text>
+</step>

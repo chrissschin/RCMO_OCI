@@ -1,0 +1,140 @@
+<?php
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	July 13 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_00:
+ * Log-In Screen (abstract file, not to be used by itself)
+ *
+ * Showed when the end-user comes from an external web-site or
+ * the Online Check-In authorization token has expired.
+ */
+
+/**
+ * ctrlr_online_check_in_action_step_00()	handles step_00 within the online check-in process
+ *
+ * @param	ARRAY	&$env	reference to global variable '$_app_env'
+ * @param	ARRAY	&$msgs	reference to variable '$main_msgs' where any messages are stored
+ * @param	ARRAY	&$out	reference to variable '$output' which contains content to be rendered
+ * @param	BOOLEAN	&$CRUD	specifies if the action is being called in a CReate/Update/Delete compacity
+ * @return	VOID	N/A
+ */
+function ctrlr_online_check_in_action_step_00(&$env,&$msgs,&$out,$CRUD=FALSE){
+    if($CRUD===TRUE){
+        if($env['flags']['is_CRUD']===TRUE){
+            # Save the end-user's user name in the PHP Session
+            $_SESSION['oci']['login']['user_name']=@$env['$_post']['user_name'];
+
+            # CReate / Update / Delete code lines
+            $env['request'][]=array(
+                'url'=>$env['API']['URL']['SRCONS'],
+                'fields'=>array(
+                    'api_key'=>$env['API']['KEY'],
+                    'v'=>$env['API']['VER'],
+                    'method'=>'login',
+                    'login_name'=>$_SESSION['oci']['login']['user_name'],
+                    'login_password'=>@$env['$_post']['password']
+                )
+            );
+
+            //CRUD error checking
+            $li_index=_ctrlr_pro_curl($env,$msgs);
+            if(($env['request'][$li_index]['response']['sxml'] instanceof SimpleXMLElement)===FALSE ||
+               ($env['request'][$li_index]['response']['sxml']->getName()==='loginResponse' && (string)$env['request'][$li_index]['response']['sxml']->signature==='')){
+                $msgs['error'][]='whoops, logging-in didn\'t work!!!';
+            }
+            else if($env['request'][$li_index]['response']['sxml']->getName()==='loginResponse'){
+                $env['request'][]=array(
+                    'url'=>$env['API']['URL']['SRCONS'],
+                    'fields'=>array(
+                        'api_key'=>$env['API']['KEY'],
+                        'v'=>$env['API']['VER'],
+                        'method'=>'getSingleSignOnToken',
+                        'login_name'=>$_SESSION['oci']['login']['user_name'],
+                        'login_password'=>@$env['$_post']['password']
+                    )
+                );
+
+                $gssot_index=_ctrlr_pro_curl($env,$msgs);
+                if(($env['request'][$gssot_index]['response']['sxml'] instanceof SimpleXMLElement)===FALSE ||
+                   ($env['request'][$gssot_index]['response']['sxml']->getName()==='getSingleSignOnTokenResponse' && (string)$env['request'][$gssot_index]['response']['sxml']->token==='')){
+                    $msgs['error'][]='whoops, getting authorization didn\'t work!!!';
+                }
+                else if($env['request'][$gssot_index]['response']['sxml']->getName()==='getSingleSignOnTokenResponse'){
+                    //Once we have logged in the end-user then redirect them back here using the new authorization token
+                    $_SESSION['oci']['login']['success']=true;
+                    // Added by Kevin 
+                    $locale = '';
+                    if(@$env['$_get']['locale']!=='') {
+                        $locale ='&locale='.@$env['$_get']['locale'];
+                    }
+                    //End Added by Kevin 
+                    header('Cookie: '.(string)@$_SERVER['HTTP_COOKIE']);
+                    header('Location: '.(preg_replace('/(.+?)\?.*$|$/','$1',$env['entry_url']).'?fr_id='.@$env['$_get']['fr_id'].'&auth='.(string)$env['request'][$gssot_index]['response']['sxml']->token).$locale);
+                    exit(0);
+                }
+            }
+        }
+    }
+    else if($view=_ctrlr_pro_view(__FUNCTION__)){
+        # Read code lines
+        $step_00['is_view_data_retrieved']=&$env['flags']['is_view_data_retrieved'];
+
+        //Log-In page should never rely on data from Luminate Online API, so, default to 'true'
+        $step_00['is_view_data_retrieved']=true;
+
+        if($step_00['is_view_data_retrieved']===TRUE || $env['flags']['is_step_view_on_error']===TRUE){
+            //By default, hide all navigation thereby forcing the end-user to complete required action(s)
+            $env['flags']['is_hiding_nav']['all']=true;
+            
+
+            # Replace text placeholders with entries from the step view
+            $view['mark_up']=str_replace(
+                array(
+                    '-TXT-HEADER-',
+                    '-TXT-YOUR-SESSION-EXPIRED-',
+                    '-TXT-PLEASE-LOG-IN-',
+                    '-TXT-USER-NAME-',
+                    '-TXT-PASSWORD-',
+                    '-TXT-LOG-IN-',
+                    '-DROPDOWN-LANGUGES-',
+                    '-TXT-LOGOUT-'
+                    
+                ),
+                array(
+                    lng($view['sxml']->text[$t=0]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    $env['lang_select'],
+                    lng($view['sxml']->text[++$t]),
+                
+                ),
+                $view['mark_up']
+            );
+
+            # Replace data placeholders with values
+            $view['mark_up']=str_replace(
+                array(
+                    '_SESS_EXP_CLASS_',
+                    '_USER_NAME_'
+                ),
+                array(
+                    (@$_SESSION['oci']['login']['success']===TRUE&&@$env['flags']['is_allowing_api']===FALSE?'':' not_displayed'),
+                    @$_SESSION['oci']['login']['user_name']
+                ),
+                $view['mark_up']
+            );
+
+            //Update output to be rendered
+            $out['RPL']['page_title'].=lng($view['sxml']->page_title);
+            $out['RPL']['cascading_style_sheet'][]=$view['files']['css'];
+            $out['RPL']['javascript'][]=$view['files']['js'];
+            $out['RPL']['view']=str_replace((nl().'_STEP_VIEW_'),$view['mark_up'],$out['RPL']['view']);
+        }
+    }
+}
+?>

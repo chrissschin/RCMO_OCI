@@ -1,0 +1,291 @@
+<?php
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 27 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * Controller file (abstract file, not to be used by itself)
+ *
+ * In the concept of the design patter Model-View-Controller (MVC),
+ * functions shared with all controller based files reside here
+ */
+
+## INVOKE CONTROLLER CONSTRUCTOR  #######################################
+ _ctrlr_pro_construct($_app_env);
+
+/**
+ * _ctrlr_pro_messages_to_html()	encases entries in '$messages' inside a DIV element with attribute '$class' prefixed with count '$nls' and count '$tabs'
+ *
+ * @param	ARRAY	$messages
+ * @param	INTEGER	$nls=1
+ * @param	INTEGER	$tabs=5
+ * @return	STRING	populated DIV elements
+ */
+function _ctrlr_pro_messages_to_html($messages,$nls=1,$tabs=5){
+    $html='';
+
+    foreach((array)$messages as $class=>$msgs){
+        foreach($msgs as $m){
+            $html.=(nl($nls).t($tabs).'<div class="message '.($cn=is_string($class)?$class:'error').' border_'.$cn.' color_'.$cn.'">'.$m.'</div>');
+        }
+    }
+
+    return $html;
+}
+
+/**
+ * _ctrlr_pro_curl()	processes a web-service request using cURL, response stored as RAW and SimpleXML
+ *
+ * @param	ARRAY	&$env	represents the application environment
+ * @param	ARRAY	&$msgs	reference to variable '$main_msgs' where any messages are stored
+ * @return	INTEGER	array index of the web-service request
+ */
+function _ctrlr_pro_curl(&$env,&$msgs){
+    # cURL
+    $cURL=curl_init();
+
+    # Needed to stop certificate checks under HTTPS,
+    # we're already under the HTTPS server, no need to check/secure again.
+    curl_setopt($cURL,CURLOPT_SSL_VERIFYPEER,FALSE);
+
+    curl_setopt($cURL,CURLOPT_POST,TRUE);
+    curl_setopt($cURL,CURLOPT_HEADER,TRUE);
+    curl_setopt($cURL,CURLINFO_HEADER_OUT,TRUE);
+    curl_setopt($cURL,CURLOPT_USERAGENT,(string)@$_SERVER['HTTP_USER_AGENT']);
+    curl_setopt($cURL,CURLOPT_COOKIE,(string)@$_SERVER['HTTP_COOKIE']);
+    curl_setopt($cURL,CURLOPT_RETURNTRANSFER,TRUE);
+
+    # PRE-PROCESSING
+    $request=&$env['request'][$ridx=(count($env['request'])-1)];
+
+    # PROCESSING
+    curl_setopt($cURL,CURLOPT_URL,$request['url']);
+
+    //Must create query string otherwise the array will cause PHP to use FORM encoding "Content-Type: multipart/form-data;",
+    //and the Luminate Online REST APIs only return results with FORM encoding "Content-Type: application/x-www-form-urlencoded;" .
+    curl_setopt($cURL,CURLOPT_POSTFIELDS,http_build_query($request['fields'],'','&'));
+
+    $request['response']=curl_exec($cURL);
+
+    # POST-PROCESSING
+    $request['response']=array(
+        'sxml'=>@simplexml_load_string(trim(preg_replace('/.+(<\?xml.+?)\s*$/s','$1',$request['response']))),
+        'raw'=>(is_string($request['response'])&&($r=trim($request['response']))?(nl().preg_replace('/\s+(xsi|xmlns)/',(nl().' $1'),$r)):$request['response'])
+    );
+
+    if(($request['response']['sxml'] instanceof SimpleXMLElement)===TRUE && $request['response']['sxml']->getName()==='errorResponse' && !in_array(($err_msg='('.trim($request['response']['sxml']->code).') '.trim($request['response']['sxml']->message)),(array)@$msgs['error'])){
+        $msgs['error'][]=$err_msg;
+    }
+
+    # DEV ENVIRONMENT ONLY STATEMENTS
+    if($env['is_DEV']){
+        $request['cURL']=curl_getinfo($cURL);
+        $request['cURL']['request_header']=(nl().@$request['cURL']['request_header']);
+    }
+    # DEV end
+
+    curl_close($cURL);
+
+    return $ridx;
+}
+
+/**
+ * _ctrlr_pro_action()	creates a path to a function's file or a _pub_/_action_/_pri_ function call based on '$file', '$id', and '$params'
+ *
+ * @param	STRING	$file
+ * @param	STRING	$id
+ * @param	STRING	$params
+ * @return	STRING	file path or function name
+ */
+function _ctrlr_pro_action($file,$id,$params){
+    $fnd='/(.*)(ctrlr)\.(.+?)\..*$/';
+    $rpl='$2_$3';
+
+    if($params===TRUE){
+        if(!is_file(($name=preg_replace($fnd,('$1$2.$3.'),$file).$id.'.abstract'))){
+            $name='_NO_FILE_WITH_NAME_';
+        }
+    }
+    else{
+        $scope='_pri_';
+        if(!function_exists(($name=preg_replace($fnd,$rpl,$file).$scope.$id))){
+            $scope='_action_';
+            if(!function_exists(($name=preg_replace($fnd,$rpl,$file).$scope.$id))){
+                $scope='_pro_';
+                if(!function_exists(($name=preg_replace($fnd,$rpl,$file).$scope.$id))){
+                    $name='_NO_FUNCTION_WITH_NAME';
+                }
+            }
+        }
+
+        $name.=('('.$params.');');
+    }
+
+    return $name;
+}
+
+/**
+ * _ctrlr_pro_model()	retrieves generalized data for use by all actions/steps/functions as SimpleXML
+ *
+ * @param	STRING	$function
+ * @return	OBJECT	SimpleXML element
+ */
+function _ctrlr_pro_model($function){
+    return @simplexml_load_file(preg_replace('/.*ctrlr_(.+)_(pub|action|pri)_.+/',(__DIR__.'/../model/model.$1.xml'),$function));
+}
+
+/**
+ * _ctrlr_pro_view()	creates an array containing file-paths, the view's mark up, and any XML data as SimpleXML
+ *
+ * @param	STRING	$function
+ * @return	ARRAY	view information or NULL on error
+ */
+function _ctrlr_pro_view($function){
+    $be_p=(__DIR__.'/../view/');
+
+    $file=preg_replace('/.*ctrlr_(.+)_(pub|action|pri)_(.+)/','view.$1.$3.',$function);
+
+    $view=array(
+        'files'=>array(
+            'xml'=>($xml=($be_p.$file.'xml')),
+            'html'=>($html=($be_p.$file.'html')),
+            'css'=>($file.'css'),
+            'js'=>($file.'js')
+        ),
+        'sxml'=>@simplexml_load_file($xml),
+        'mark_up'=>@file_get_contents($html)
+    );
+
+    return (is_string($view['mark_up'])?$view:NULL);
+}
+
+/**
+ * _ctrlr_pro_render()	sends content back to the end-user applying any generalized content modifications
+ *
+ * @param	ARRAY	&$env	reference to global variable '$_app_env'
+ * @param	ARRAY	&$out	reference to variable '$output' which contains content to be rendered
+ * @return	VOID	N/A
+ */
+function _ctrlr_pro_render(&$env,&$out){
+    # See if we are rendering any content
+    if($env['flags']['is_rendering']){
+        if($env['flags']['is_AJAX']){
+            # Specify content to send back to the end-user, suppress errors in case AJAX data was not declared
+            $send=@$env['data']['ajax'];
+
+            # Set HTTP header values
+            $content_type='text/javascript; charset=utf-8';
+            $content_length=strlen($send);
+            $content_description='AJAX Response';
+            $cache_control='no-cache, must-revalidate, max-age=0';
+            $pragma='no-cache';
+        }
+        else{
+            # Specify front-end paths
+            $fe['path_css']='code/css/';
+            $fe['path_js']='code/js/';
+
+            # Copy arrays specifying any cascading style sheets or javascript files
+            $fe['css']=(array)$out['RPL']['cascading_style_sheet'];
+            $fe['js']=(array)$out['RPL']['javascript'];
+
+            # Get the first cascading style sheet and javascript entry
+            $css=trim(reset($fe['css']));
+            $js=trim(reset($fe['js']));
+
+            # Ready variables then create the cascading style sheet and javascript include strings
+            $out['RPL']['cascading_style_sheet']='';
+            $out['RPL']['javascript']='';
+
+            do{
+                if(is_file(__DIR__.'/../www/'.$fe['path_css'].$css)){
+                    $out['RPL']['cascading_style_sheet'].=(nl().t(2).'<link type="text/css" rel="stylesheet" href="'.$fe['path_css'].$css.'"/>');
+                }
+                if(is_file(__DIR__.'/../www/'.$fe['path_js'].$js)){
+                    $out['RPL']['javascript'].=(nl().t(2).'<script type="text/javascript" src="'.$fe['path_js'].$js.'"></script>');
+                }
+            }
+            while(!in_array('',array(($css=trim(next($fe['css']))),($js=trim(next($fe['js']))))));
+
+            # Specify content to send back to the end-user
+            $send=str_replace($out['FND'],$out['RPL'],file_get_contents($out['TEMPLATE']));
+
+            # Set HTTP header values
+            $content_type='text/html; charset=utf-8';
+            $content_length=strlen($send);
+            $content_description='HTML5 Document';
+            $cache_control='private, max-age=1200';
+            $pragma='private';
+
+            # DEV ENVIRONMENT ONLY STATEMENTS
+            if($env['is_DEV']){
+                ob_start();
+                var_dump($env);
+                $_var_dump_obc=ob_get_contents();
+                ob_end_clean();
+
+                $_var_dump_obc=htmlspecialchars($_var_dump_obc);
+                $_var_dump_obc=str_replace(($_var_dump_str_slice=(string)strstr($_var_dump_obc,'[&quot;mark_up&quot;]=&gt;')),'',$_var_dump_obc);
+                $_var_dump_obc=preg_replace('/&lt;(\?|\/)?(.+?)(\?)?&gt;/s','&lt;$1<font color="#0000ff">$2</font>$3&gt;',$_var_dump_obc);
+                $_var_dump_obc=preg_replace('/(=&quot;)(.*?)(&quot;)/','<font color="#000000">$1</font><font color="#008800">$2</font><font color="#000000">$3</font>',$_var_dump_obc);
+                $_var_dump_obc=preg_replace('/&gt;(.+?)&lt;/','&gt;<font color="#ff0000">$1</font>&lt;',$_var_dump_obc);
+
+                $content_length=strlen($send.=(nl(2).'<pre style="font-size:16px; font-weight:400;">'.$_var_dump_obc.preg_replace('/((\r\n|\n)+\s*string\(\d+\)\s&quot;)/',('$1'.nl()),$_var_dump_str_slice).'</pre>'));
+            }
+            # DEV end
+        }
+
+        # Send HTTP headers
+        header('Content-Type: '.$content_type);
+        if(empty($_SERVER['HTTP_ACCEPT_ENCODING'])){
+            // Don't use length if server using compression, which means the filesize will be different that what it is on disk
+            header('Content-Length: '.$content_length);
+        }
+        header('Content-Description: '.$content_description);
+        header('Cache-Control: '.$cache_control);
+        header('Pragma: '.$pragma);
+
+        if($env['flags']['is_AJAX']){
+            header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+        }
+        else{
+            header('Last-Modified: '.gmdate('D, d M Y H:i:s',strtotime(date('Y-m-d H:i:s'))).' GMT');
+        }
+
+        # Send content
+        echo($send);
+    }
+}
+
+/**
+ * _ctrlr_pro_construct()	Sets up shared data structures for use throughout processing
+ *
+ * @param	ARRAY	&$env	reference to global variable '$_app_env'
+ * @return	VOID	N/A
+ */
+function _ctrlr_pro_construct(&$env){
+    # Set global variables
+    $env['entry_url']=((isset($_SERVER['HTTPS'])&&$_SERVER['HTTPS']?'https://':'http://').$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
+
+    $env['$_get']=&$_GET;
+    $env['$_post']=&$_POST;
+
+    switch(strtoupper(trim(@$env['$_get']['locale']))){
+        case 'FR_CA':{
+            $env['language']='montreal';
+            break;
+        }
+        default:{
+            $env['language']='english';
+            break;
+        }
+    }
+
+    //By default, only render normally if not an AJAX request
+    $env['flags']['is_rendering']=TRUE;
+    //Determine if it's an AJAX request, and if so, trim the ajax parameter value
+    if($env['flags']['is_AJAX']=(trim(@$env['$_get']['ajax'])!=='')){
+        $env['$_get']['ajax']=trim(@$env['$_get']['ajax']);
+    }
+}
+?>

@@ -1,0 +1,309 @@
+<?php
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 29 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_03:
+ * Emergency Contact Info (abstract file, not to be used by itself)
+ *
+ * End-user's entered emergency contact information, once entered,
+ * allows the end-user to proceed with the online check-in process
+ */
+
+/**
+ * ctrlr_online_check_in_action_step_03()	handles step_03 within the online check-in process
+ *
+ * @param	ARRAY	&$env	reference to global variable '$_app_env'
+ * @param	ARRAY	&$msgs	reference to variable '$main_msgs' where any messages are stored
+ * @param	ARRAY	&$out	reference to variable '$output' which contains content to be rendered
+ * @param	BOOLEAN	&$CRUD	specifies if the action is being called in a CReate/Update/Delete compacity
+ * @return	VOID	N/A
+ */
+function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
+    if($CRUD===TRUE){
+        if($env['flags']['is_CRUD']===TRUE){
+            # CReate / Update / Delete code lines
+            $env['request'][]=array(
+                'url'=>$env['API']['URL']['TR'],
+                'fields'=>array(
+                    'api_key'=>$env['API']['KEY'],
+                    'v'=>$env['API']['VER'],
+                    'method'=>'updateRegistration',
+                    'fr_id'=>@$env['$_get']['fr_id'],
+                    $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                    'emergency_name'=>$env['$_post']['emergency_name'],
+                    'emergency_phone'=>$env['$_post']['emergency_phone'],
+//<!-- Begin adding years question -->
+                    'years'=>$env['$_post']['years'],
+//<!-- Begin adding Jersey question -->
+//<!-- Begin adding Shuttle question -->
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][11])=>(strtoupper(@$env['$_post']['shuttle1'])==='ON'?'Yes':'No'),
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][12])=>(strtoupper(@$env['$_post']['shuttle2'])==='ON'?'Yes':'No'),
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][13])=>(strtoupper(@$env['$_post']['shuttle3'])==='ON'?'Yes':'No'),
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][14])=>(strtoupper(@$env['$_post']['shuttle4'])==='ON'?'Yes':'No'),
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][15])=>(strtoupper(@$env['$_post']['shuttle5'])==='ON'?'Yes':'No'),
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][16])=>(strtoupper(@$env['$_post']['shuttle6'])==='ON'?'Yes':'No')
+                )
+            );
+
+            //CRUD error checking
+            $ur_index=_ctrlr_pro_curl($env,$msgs);
+            if(($env['request'][$ur_index]['response']['sxml'] instanceof SimpleXMLElement)===FALSE ||
+               ($env['request'][$ur_index]['response']['sxml']->getName()==='updateRegistrationResponse' && strtoupper($env['request'][$ur_index]['response']['sxml']->success)!=='TRUE')){
+                $msgs['error'][]='whoops, updating didn\'t work!!!';
+            }
+            else if($env['request'][$ur_index]['response']['sxml']->getName()==='updateRegistrationResponse'){
+                $env['request'][]=array(
+                    'url'=>$env['API']['URL']['TR'],
+                    'fields'=>array(
+                        'api_key'=>$env['API']['KEY'],
+                        'v'=>$env['API']['VER'],
+                        'method'=>'updateSurveyResponses',
+                        'fr_id'=>@$env['$_get']['fr_id'],
+                        $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                        'survey_id'=>$env['API']['SURVEY']['ID'],
+                        ('question_'.$env['API']['SURVEY']['QUESTION'][0])=>(strtoupper(@$env['$_post']['cancer_survivor'])==='ON'?'Yes':'No'),
+                        ('question_'.$env['API']['SURVEY']['QUESTION'][1])=>(strtoupper(@$env['$_post']['vegetarian_meal'])==='ON'?'Yes':'No'),
+//<!-- Begin adding years question -->
+						('question_'.$env['API']['SURVEY']['QUESTION'][9])=>$env['$_post']['years'],
+//<!-- Begin adding Jersey question -->
+						('question_'.$env['API']['SURVEY']['QUESTION'][10])=>$env['$_post']['jersey_option'],
+//<!-- Begin adding Shuttle question -->
+                        ('question_'.$env['API']['SURVEY']['QUESTION'][11])=>(strtoupper(@$env['$_post']['shuttle1'])==='ON'?'Yes':'No'),
+                        ('question_'.$env['API']['SURVEY']['QUESTION'][12])=>(strtoupper(@$env['$_post']['shuttle2'])==='ON'?'Yes':'No'),
+                        ('question_'.$env['API']['SURVEY']['QUESTION'][13])=>(strtoupper(@$env['$_post']['shuttle3'])==='ON'?'Yes':'No'),
+                        ('question_'.$env['API']['SURVEY']['QUESTION'][14])=>(strtoupper(@$env['$_post']['shuttle4'])==='ON'?'Yes':'No'),
+                        ('question_'.$env['API']['SURVEY']['QUESTION'][15])=>(strtoupper(@$env['$_post']['shuttle5'])==='ON'?'Yes':'No'),
+                        ('question_'.$env['API']['SURVEY']['QUESTION'][16])=>(strtoupper(@$env['$_post']['shuttle6'])==='ON'?'Yes':'No'),
+                'requested_only'=>'TRUE'
+                    )
+                );
+
+                $usr_idx=_ctrlr_pro_curl($env,$msgs);
+                if(($env['request'][$usr_idx]['response']['sxml'] instanceof SimpleXMLElement)===FALSE ||
+                   ($env['request'][$usr_idx]['response']['sxml']->getName()==='updateSurveyResponsesResponse' && strtoupper($env['request'][$usr_idx]['response']['sxml']->success)!=='TRUE')){
+                    $msgs['error'][]='whoops, updating didn\'t work!!!';
+                }
+            }
+        }
+    }
+    else if($view=_ctrlr_pro_view(__FUNCTION__)){
+        # Read code lines
+        $step_03['is_view_data_retrieved']=&$env['flags']['is_view_data_retrieved'];
+
+        $env['request'][]=array(
+            'url'=>$env['API']['URL']['TR'],
+            'fields'=>array(
+                'api_key'=>$env['API']['KEY'],
+                'v'=>$env['API']['VER'],
+                'method'=>'getRegistration',
+                'fr_id'=>@$env['$_get']['fr_id'],
+                $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN']
+            )
+        );
+
+        $gr_idx=_ctrlr_pro_curl($env,$msgs);
+        if(@$env['request'][$gr_idx]['response']['sxml'] instanceof SimpleXMLElement && $env['request'][$gr_idx]['response']['sxml']->getName()==='getRegistrationResponse'){
+            $env['request'][]=array(
+                'url'=>$env['API']['URL']['TR'],
+                'fields'=>array(
+                    'api_key'=>$env['API']['KEY'],
+                    'v'=>$env['API']['VER'],
+                    'method'=>'getSurveyResponses',
+                    'fr_id'=>@$env['$_get']['fr_id'],
+                    $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                    'survey_id'=>$env['API']['SURVEY']['ID'],
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][0])=>'TRUE',
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][1])=>'TRUE',
+//<!-- Begin adding years question -->
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][9])=>'TRUE',
+//<!-- Begin adding Jersey question -->
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][10])=>'TRUE',
+//<!-- Begin adding Shuttle question -->
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][11])=>'TRUE',
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][12])=>'TRUE',
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][13])=>'TRUE',
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][14])=>'TRUE',
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][15])=>'TRUE',
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][16])=>'TRUE'
+                )
+            );
+
+            $gsr_idx=_ctrlr_pro_curl($env,$msgs);
+            if(@$env['request'][$gsr_idx]['response']['sxml'] instanceof SimpleXMLElement && $env['request'][$gsr_idx]['response']['sxml']->getName()==='getSurveyResponsesResponse'){
+                $step_03['is_view_data_retrieved']=true;
+            }
+        }
+
+        if($step_03['is_view_data_retrieved']===TRUE || $env['flags']['is_step_view_on_error']===TRUE){
+            //For XPath usage, all namespaces must have a prefix. Encase in a logic check so when debugging no error is thrown.
+            if(@$env['request'][$gsr_idx]['response']['sxml'] instanceof SimpleXMLElement){
+                ctrlr_online_check_in_pro_xpath_register_namespace($env['request'][$gsr_idx]['response']['sxml']);
+            }
+
+            //Get respective XML elements from the response
+            $step_03['cancer_survivor']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][0].'\']'):NULL);
+            $step_03['vegetarian_meal']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][1].'\']'):NULL);
+//<!-- Begin adding years question -->
+            $step_03['years']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][9].'\']'):NULL);
+//<!-- Begin adding Jersey question -->
+            $step_03['jersey_value']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][10].'\']'):NULL);
+//<!-- Begin adding Shuttle question -->
+            $step_03['shuttle1']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][11].'\']'):NULL);
+            $step_03['shuttle2']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][12].'\']'):NULL);
+            $step_03['shuttle3']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][13].'\']'):NULL);
+            $step_03['shuttle4']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][14].'\']'):NULL);
+            $step_03['shuttle5']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][15].'\']'):NULL);
+            $step_03['shuttle6']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][16].'\']'):NULL);
+
+            # Replace text placeholders with entries from the step view
+            $view['mark_up']=str_replace(
+                array(
+                    '-TXT-HEADER-',
+                    '-TXT-EMERGENCY-NAME-',
+                    '-TXT-EMERGENCY-PHONE-',
+                    '-TXT-CANCER-SURVIVOR-1-',
+                    '-TXT-CANCER-SURVIVOR-2-',
+                    '-TXT-CANCER-SURVIVOR-3-',
+                    '-TXT-VEGETARIAN-MEAL-1-',
+                    '-TXT-VEGETARIAN-MEAL-2-',
+                    '-TXT-VEGETARIAN-MEAL-3-',
+//<!-- Begin adding years question -->
+                    '-TXT-YEARS-',
+//<!-- Begin adding Jersey question -->
+					'-TXT-JERSEY-SIZE-',
+					'-TXT-JERSEY-REGISTER-6-',
+					'-TXT-JERSEY-REGISTER-5-',
+					'-TXT-JERSEY-REGISTER-4-',
+					'-TXT-JERSEY-REGISTER-3-',
+					'-TXT-JERSEY-REGISTER-2-',
+					'-TXT-JERSEY-REGISTER-1-',
+					'-TXT-JERSEY-REGISTER-0-',
+					'-TXT-Q1-SHUTTLE1-',
+					'-TXT-Q1-SHUTTLE2-',
+					'-TXT-Q1-SHUTTLE3-',
+					'-TXT-Q2-SHUTTLE1-',
+					'-TXT-Q2-SHUTTLE2-',
+					'-TXT-Q2-SHUTTLE3-',
+					'-TXT-Q3-SHUTTLE1-',
+					'-TXT-Q3-SHUTTLE2-',
+					'-TXT-Q3-SHUTTLE3-',
+					'-TXT-Q4-SHUTTLE1-',
+					'-TXT-Q4-SHUTTLE2-',
+					'-TXT-Q4-SHUTTLE3-',
+					'-TXT-Q5-SHUTTLE1-',
+					'-TXT-Q5-SHUTTLE2-',
+					'-TXT-Q5-SHUTTLE3-',
+					'-TXT-Q6-SHUTTLE1-',
+					'-TXT-Q6-SHUTTLE2-',
+					'-TXT-Q6-SHUTTLE3-',
+//<!-- Begin adding Shuttle question -->
+                    '-DROPDOWN-LANGUGES-'
+                ),
+                array(
+                    lng($view['sxml']->text[$t=0]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+//<!-- Begin adding years question -->
+                    lng($view['sxml']->text[++$t]),
+//<!-- Begin adding Jersey question -->
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+//<!-- Begin adding Shuttle question -->
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    $env['lang_select']
+                ),
+                $view['mark_up']
+            );
+
+            # Replace data placeholders with values
+            $view['mark_up']=str_replace(
+                array(
+                    '_EMERGENCY_NAME_',
+                    '_EMERGENCY_PHONE_',
+                    ('name="cancer_survivor"'),
+                    ('name="vegetarian_meal"'),
+//<!-- Begin adding years question -->
+                    '_YEARS_',
+//<!-- Begin adding Jersey question -->
+//                    ('name="jersey_option" value="_JERSEY_PRE_REGISTER_7_"'),
+                    ('name="jersey_option" value="_JERSEY_PRE_REGISTER_6_"'),
+                    ('name="jersey_option" value="_JERSEY_PRE_REGISTER_5_"'),
+                    ('name="jersey_option" value="_JERSEY_PRE_REGISTER_4_"'),
+                    ('name="jersey_option" value="_JERSEY_PRE_REGISTER_3_"'),
+                    ('name="jersey_option" value="_JERSEY_PRE_REGISTER_2_"'),
+                    ('name="jersey_option" value="_JERSEY_PRE_REGISTER_1_"'),
+                    ('name="jersey_option" value="_JERSEY_PRE_REGISTER_0_"'),
+//<!-- Begin adding Shuttle question -->
+                    ('name="shuttle1" value="-TXT-Q1-SHUTTLE1-"'),
+                    ('name="shuttle2" value="-TXT-Q2-SHUTTLE1-"'),
+                    ('name="shuttle3" value="-TXT-Q3-SHUTTLE1-"'),
+                    ('name="shuttle4" value="-TXT-Q4-SHUTTLE1-"'),
+                    ('name="shuttle5" value="-TXT-Q5-SHUTTLE1-"'),
+                    ('name="shuttle6" value="-TXT-Q6-SHUTTLE1-"')
+                ),
+                array(
+                    @$env['request'][$gr_idx]['response']['sxml']->registration->emergencyName,
+                    @$env['request'][$gr_idx]['response']['sxml']->registration->emergencyPhone,
+                    ('name="cancer_survivor"'.(strtoupper(@$step_03['cancer_survivor'][0]->responseValue)==='YES'?' checked="checked"':'')),
+                    ('name="vegetarian_meal"'.(strtoupper(@$step_03['vegetarian_meal'][0]->responseValue)==='YES'?' checked="checked"':'')),
+//<!-- Begin adding years question -->
+                    @$step_03['years'][0]->responseValue,
+//<!-- Begin adding Jersey question -->
+                    ('name="jersey_option" value="'.$env['API']['SURVEY']['UPSELL'][3].'"'.((string)@$step_03['jersey_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][3]?' checked="checked"':'')),
+                    ('name="jersey_option" value="'.$env['API']['SURVEY']['UPSELL'][4].'"'.((string)@$step_03['jersey_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][4]?' checked="checked"':'')),
+                    ('name="jersey_option" value="'.$env['API']['SURVEY']['UPSELL'][5].'"'.((string)@$step_03['jersey_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][5]?' checked="checked"':'')),
+                    ('name="jersey_option" value="'.$env['API']['SURVEY']['UPSELL'][6].'"'.((string)@$step_03['jersey_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][6]?' checked="checked"':'')),
+                    ('name="jersey_option" value="'.$env['API']['SURVEY']['UPSELL'][7].'"'.((string)@$step_03['jersey_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][7]?' checked="checked"':'')),
+                    ('name="jersey_option" value="'.$env['API']['SURVEY']['UPSELL'][8].'"'.((string)@$step_03['jersey_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][8]?' checked="checked"':'')),
+                    ('name="jersey_option" value="'.$env['API']['SURVEY']['UPSELL'][9].'"'.((string)@$step_03['jersey_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][9]?' checked="checked"':'')),
+//<!-- Begin adding Shuttle question -->
+                    ('name="shuttle1" value="'.$env['API']['SURVEY']['QUESTION'][11].'"'.((string)@$step_03['shuttle1_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][11]?' checked="checked"':'')),
+                    ('name="shuttle2" value="'.$env['API']['SURVEY']['QUESTION'][12].'"'.((string)@$step_03['shuttle2_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][12]?' checked="checked"':'')),
+                    ('name="shuttle3" value="'.$env['API']['SURVEY']['QUESTION'][13].'"'.((string)@$step_03['shuttle3_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][13]?' checked="checked"':'')),
+                    ('name="shuttle4" value="'.$env['API']['SURVEY']['QUESTION'][14].'"'.((string)@$step_03['shuttle4_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][14]?' checked="checked"':'')),
+                    ('name="shuttle5" value="'.$env['API']['SURVEY']['QUESTION'][15].'"'.((string)@$step_03['shuttle5_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][15]?' checked="checked"':'')),
+                    ('name="shuttle6" value="'.$env['API']['SURVEY']['QUESTION'][16].'"'.((string)@$step_03['shuttle6_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][16]?' checked="checked"':''))
+                ),
+                $view['mark_up']
+            );
+
+            //Update output to be rendered
+            $out['RPL']['page_title'].=lng($view['sxml']->page_title);
+            $out['RPL']['cascading_style_sheet'][]=$view['files']['css'];
+            $out['RPL']['javascript'][]=$view['files']['js'];
+            $out['RPL']['view']=str_replace((nl().'_STEP_VIEW_'),$view['mark_up'],$out['RPL']['view']);
+        }
+    }
+}
+?>

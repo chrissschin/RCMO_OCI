@@ -1,0 +1,144 @@
+<?php
+/************************************************************************
+ * @author	Kingsley U. Uwode II, contractor via Robert Half Technologies
+ * @since	May 29 2015
+ * @link	mailto:kingzmeadow@hotmail.com
+ *
+ * step_07:
+ * Upsell (abstract file, not to be used by itself)
+ *
+ * If an option for the event, shows any upsell promotions,
+ * once a choice has been made, allows the end-user to proceed with
+ * the online check-in process
+ */
+
+/**
+ * ctrlr_online_check_in_action_step_07()	handles step_07 within the online check-in process
+ *
+ * @param	ARRAY	&$env	reference to global variable '$_app_env'
+ * @param	ARRAY	&$msgs	reference to variable '$main_msgs' where any messages are stored
+ * @param	ARRAY	&$out	reference to variable '$output' which contains content to be rendered
+ * @param	BOOLEAN	&$CRUD	specifies if the action is being called in a CReate/Update/Delete compacity
+ * @return	VOID	N/A
+ */
+function ctrlr_online_check_in_action_step_07(&$env,&$msgs,&$out,$CRUD=FALSE){
+    if($CRUD===TRUE){
+        if($env['flags']['is_CRUD']===TRUE){
+            # CReate / Update / Delete code lines
+            //See if an upsell option was chosen
+            $step_07['is_upsell']=(isset($env['$_post']['upsell_option'])&&strtoupper(@$env['$_post']['upsell_option'])!=='NO');
+
+            $env['request'][]=array(
+                'url'=>$env['API']['URL']['TR'],
+                'fields'=>array(
+                    'api_key'=>$env['API']['KEY'],
+                    'v'=>$env['API']['VER'],
+                    'method'=>'updateSurveyResponses',
+                    'fr_id'=>@$env['$_get']['fr_id'],
+                    $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                    'survey_id'=>$env['API']['SURVEY']['ID'],
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][6])=>(strtoupper($env['$_post']['upsell_option'])!=='NO'?'Yes':'No'),
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][7])=>$env['$_post']['upsell_option']
+                )
+            );
+
+            //CRUD error checking
+            $usr_idx=_ctrlr_pro_curl($env,$msgs);
+            if(($env['request'][$usr_idx]['response']['sxml'] instanceof SimpleXMLElement)===FALSE ||
+               ($env['request'][$usr_idx]['response']['sxml']->getName()==='updateSurveyResponsesResponse' && strtoupper($env['request'][$usr_idx]['response']['sxml']->success)!=='TRUE')){
+                $msgs['error'][]='whoops, updating didn\'t work!!!';
+            }
+        }
+    }
+    else if($view=_ctrlr_pro_view(__FUNCTION__)){
+        # Read code lines
+        $step_07['is_view_data_retrieved']=&$env['flags']['is_view_data_retrieved'];
+
+        $env['request'][]=array(
+            'url'=>$env['API']['URL']['TR'],
+            'fields'=>array(
+                'api_key'=>$env['API']['KEY'],
+                'v'=>$env['API']['VER'],
+                'method'=>'getSurveyResponses',
+                'fr_id'=>@$env['$_get']['fr_id'],
+                $env['API']['AUTH']['FIELD']=>@$env['API']['AUTH']['TOKEN'],
+                'survey_id'=>$env['API']['SURVEY']['ID'],
+                ('question_'.$env['API']['SURVEY']['QUESTION'][6])=>'TRUE',
+                ('question_'.$env['API']['SURVEY']['QUESTION'][7])=>'TRUE',
+                'requested_only'=>'TRUE'
+            )
+        );
+
+        $gsr_idx=_ctrlr_pro_curl($env,$msgs);
+        if(@$env['request'][$gsr_idx]['response']['sxml'] instanceof SimpleXMLElement && $env['request'][$gsr_idx]['response']['sxml']->getName()==='getSurveyResponsesResponse'){
+            $step_07['is_view_data_retrieved']=true;
+        }
+
+        if($step_07['is_view_data_retrieved']===TRUE || $env['flags']['is_step_view_on_error']===TRUE){
+            //For XPath usage, all namespaces must have a prefix. Encase in a logic check so when debugging no error is thrown.
+            if(@$env['request'][$gsr_idx]['response']['sxml'] instanceof SimpleXMLElement){
+                ctrlr_online_check_in_pro_xpath_register_namespace($env['request'][$gsr_idx]['response']['sxml']);
+            }
+
+            //Get respective XML elements from the response
+            $step_07['upsell_accepted']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][6].'\']'):NULL);
+            $step_07['upsell_value']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][7].'\']'):NULL);
+            $step_07['upsell_no_checked']=(strtoupper(@$step_07['upsell_value'][0]->responseValue)==='NO');
+
+            $env['flags']['is_hiding_nav']['next']=(preg_match('/^(yes|no)$/i',@$step_07['upsell_accepted'][0]->responseValue)!==1);
+
+            # Replace text placeholders with entries from the step view
+            $view['mark_up']=str_replace(
+                array(
+                    '-TXT-HEADER-',
+                    '-TXT-RENEW-YOUR-',
+                    '-TXT-PRE-REGISTER-NOW-',
+                    '-TXT-FUNDRAISING-MINIMUM-',
+#                    '-TXT-UPSELL-PRE-REGISTER-2-',
+                    '-TXT-UPSELL-PRE-REGISTER-1-',
+                    '-TXT-UPSELL-PRE-REGISTER-0-',
+                    '-TXT-UPSELL-NO-',
+                    '-TXT-IMG-UPSELL-ALT-',
+                    '-DROPDOWN-LANGUGES-'
+                ),
+                array(
+                    lng($view['sxml']->text[$t=0]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+#                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    $env['lang_select']
+                ),
+                $view['mark_up']
+            );
+
+            # Replace data placeholders with values
+            $view['mark_up']=str_replace(
+                array(
+#                    'name="upsell_option" value="_UPSELL_PRE_REGISTER_2_"',
+                    'name="upsell_option" value="_UPSELL_PRE_REGISTER_1_"',
+                    'name="upsell_option" value="_UPSELL_PRE_REGISTER_0_"',
+                    'name="upsell_option" value="No"'
+                ),
+                array(
+#                    ('name="upsell_option" value="'.$env['API']['SURVEY']['UPSELL'][2].'"'.((string)@$step_07['upsell_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][2]?' checked="checked"':'')),
+                    ('name="upsell_option" value="'.$env['API']['SURVEY']['UPSELL'][1].'"'.((string)@$step_07['upsell_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][1]?' checked="checked"':'')),
+                    ('name="upsell_option" value="'.$env['API']['SURVEY']['UPSELL'][0].'"'.((string)@$step_07['upsell_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][0]?' checked="checked"':'')),
+                    ('name="upsell_option" value="No"'.($step_07['upsell_no_checked']?' checked="checked"':''))
+                ),
+                $view['mark_up']
+            );
+
+            //Update output to be rendered
+            $out['RPL']['page_title'].=lng($view['sxml']->page_title);
+            $out['RPL']['cascading_style_sheet'][]=$view['files']['css'];
+            $out['RPL']['javascript'][]=$view['files']['js'];
+            $out['RPL']['view']=str_replace((nl().'_STEP_VIEW_'),$view['mark_up'],$out['RPL']['view']);
+        }
+    }
+}
+?>
