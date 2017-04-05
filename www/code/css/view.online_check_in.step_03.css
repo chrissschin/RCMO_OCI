@@ -11,3 +11,12 @@
 #_oci > #main > #step_03 input[type=tel]{
     width: 56%;
 }
+#_oci > #main > #step_03.content .field_row > tbody > tr > .field {
+	width: 33%;
+}
+#_oci > #main > #step_03.content .field_row > tbody > tr > .description {
+	width: auto;
+}
+#_oci > #main > #step_03.content .field_row.jerseyQ > tbody > tr > .field {
+	width: 1%;
+}
