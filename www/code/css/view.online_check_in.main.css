@@ -348,6 +348,7 @@
 
 #_oci > #main > #navigation > #banner_bottom{
     max-width: 100%;
-    width: 112px;
     height: auto;
+    position: relative;
+    top: 19px;
 }
