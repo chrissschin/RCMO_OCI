@@ -13,3 +13,10 @@
 #_oci > #main > #step_08 > #self_pledge > #status_check > tbody > tr > td:nth-child(2){
     padding-left: 2.5%;
 }
+#_oci > #main > .content label:not([class=field_text]){
+	white-space: normal !important;
+}
+#_oci > #main > .content input[type=button]{
+	margin-top:15px;
+	margin-bottom: 40px;
+}
