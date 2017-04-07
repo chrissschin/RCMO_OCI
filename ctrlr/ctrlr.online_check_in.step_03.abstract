@@ -43,7 +43,9 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                     ('question_'.$env['API']['SURVEY']['QUESTION'][13])=>(strtoupper(@$env['$_post']['shuttle3'])==='ON'?'Yes':'No'),
                     ('question_'.$env['API']['SURVEY']['QUESTION'][14])=>(strtoupper(@$env['$_post']['shuttle4'])==='ON'?'Yes':'No'),
                     ('question_'.$env['API']['SURVEY']['QUESTION'][15])=>(strtoupper(@$env['$_post']['shuttle5'])==='ON'?'Yes':'No'),
-                    ('question_'.$env['API']['SURVEY']['QUESTION'][16])=>(strtoupper(@$env['$_post']['shuttle6'])==='ON'?'Yes':'No')
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][16])=>(strtoupper(@$env['$_post']['shuttle6'])==='ON'?'Yes':'No'),
+
+                    
                 )
             );
 
@@ -180,6 +182,7 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
 					'-TXT-JERSEY-REGISTER-2-',
 					'-TXT-JERSEY-REGISTER-1-',
 					'-TXT-JERSEY-REGISTER-0-',
+					//<!-- Begin adding Shuttle question -->
 					'-TXT-Q1-SHUTTLE1-',
 					'-TXT-Q1-SHUTTLE2-',
 					'-TXT-Q1-SHUTTLE3-',
@@ -198,7 +201,12 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
 					'-TXT-Q6-SHUTTLE1-',
 					'-TXT-Q6-SHUTTLE2-',
 					'-TXT-Q6-SHUTTLE3-',
-//<!-- Begin adding Shuttle question -->
+					//route questions
+					'-TXT-ROUTE-DESCRIPTION-',
+					'-TXT-ROUTE1-',
+					'-TXT-ROUTE2-',
+					'-TXT-ROUTE3-',
+					//language dropdown
                     '-DROPDOWN-LANGUGES-'
                 ),
                 array(
@@ -223,6 +231,10 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                     lng($view['sxml']->text[++$t]),
                     lng($view['sxml']->text[++$t]),
 //<!-- Begin adding Shuttle question -->
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
                     lng($view['sxml']->text[++$t]),
                     lng($view['sxml']->text[++$t]),
                     lng($view['sxml']->text[++$t]),
