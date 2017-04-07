@@ -104,18 +104,7 @@ Shuttle Drop Off: Niagara Falls Host Hotel, Marriott on the Falls]]></french>
         <english><![CDATA[Do you require shuttle from Toronto to Niagara departing at 1:30pm ]]></english>
         <french><![CDATA[Do you require shuttle from Toronto to Niagara departing at 1:30pm ]]></french>
     </text>
-    <text>
-        <english><![CDATA[]]></english>
-        <french><![CDATA[]]></french>
-    </text>
-    <text>
-        <english><![CDATA[]]></english>
-        <french><![CDATA[]]></french>
-    </text>
-    <text>
-        <english><![CDATA[I would like to book the 6:15 p.m. shuttle]]></english>
-        <french><![CDATA[I would like to book the 6:15 p.m. shuttle]]></french>
-    </text>
+
     <text>
         <english><![CDATA[<strong>Saturday Morning June 10th Shuttles from Host Hotels to Opening Ceremonies</strong><br>
 Shuttles will run between 6:00 a.m. and 6:45 a.m. from each start line Host Hotel in Niagara and Toronto to the respective start line. Shuttles fill on a first come, first serve basis and depart when full according to the time frame below. <strong>Please note Bike Transport will not be provided with the Saturday morning shuttles. All Bike Transport to the Opening Ceremonies location will need to be arranged separately by the participant.</strong><br><br><strong>Toronto Hotel to Toronto Opening Ceremonies</strong><br>
@@ -133,9 +122,31 @@ Shuttle Drop Off: Exhibition Place (Enercare), Parking Lot 2 - 200 Princes' Boul
         <french><![CDATA[]]></french>
     </text>
     <text>
+        <english><![CDATA[I would like to book the 6:15 p.m. shuttle]]></english>
+        <french><![CDATA[I would like to book the 6:15 p.m. shuttle]]></french>
+    </text>
+
+    <text>
+        <english><![CDATA[<strong>Toronto Hotel to Toronto Opening Ceremonies</strong><br>
+Shuttle Pick Up:<br>
+Intercontinental Hotel, Toronto Centre 225 Front Street West, Toronto ON, M5V 2X3<br>
+Shuttle Drop Off: Exhibition Place (Enercare), Parking Lot 2 - 200 Princes' Boulevard - Toronto, ON]]></english>
+        <french><![CDATA[<strong>Toronto Hotel to Toronto Opening Ceremonies</strong><br>
+Shuttle Pick Up:<br>
+Intercontinental Hotel, Toronto Centre 225 Front Street West, Toronto ON, M5V 2X3<br>
+Shuttle Drop Off: Exhibition Place (Enercare), Parking Lot 2 - 200 Princes' Boulevard - Toronto, ON]]></french>    
+    </text>
+
+    <text>
+        <english><![CDATA[]]></english>
+        <french><![CDATA[]]></french>
+    </text>    
+
+    <text>
         <english><![CDATA[Do you require shuttle from the Toronto Host Hotel to the Toronto Opening Ceremonies Site]]></english>
         <french><![CDATA[Do you require shuttle from the Toronto Host Hotel to the Toronto Opening Ceremonies Site]]></french>
     </text>
+
     <text>
         <english><![CDATA[<strong>Niagara Falls to Niagara Opening Ceremonies</strong><br>
 Shuttle Pick Up: Marriott on the Falls, 6755 Fallsview Blvd, Niagara Falls, ON L2G 3W7<br>
@@ -152,6 +163,7 @@ Shuttle Drop Off: Niagara Falls Opening Ceremonies, 7200 Niagara Parkway, Niagar
         <english><![CDATA[Do you require shuttle from the Niagara Host Hotel to the Niagara Opening Ceremonies Site?]]></english>
         <french><![CDATA[Do you require shuttle from the Niagara Host Hotel to the Niagara Opening Ceremonies Site?]]></french>
     </text>
+
     <text>
         <english><![CDATA[<strong>Niagara Finish Line to Toronto Ride Venue</strong><br>
 A luxury coach for you and separate truck for your bike, provided by Mackie Group, will depart from the Finish Line in Niagara Falls and take you back to Exhibition Place in Toronto.<br>
@@ -174,6 +186,7 @@ Shuttle Drop Off: Exhibition Place (Enercare), Parking Lot 2 - 200 Princes' Boul
         <english><![CDATA[Will you need a return shuttle from the Niagara Finish Line back to Toronto?]]></english>
         <french><![CDATA[Will you need a return shuttle from the Niagara Finish Line back to Toronto?]]></french>
     </text>
+
     <text>
         <english><![CDATA[The Ride will provide complimentary Bike Transport on a separate truck to the Niagara Falls site. All bikes will be secured overnight with 24 hour security. ]]></english>
         <french><![CDATA[The Ride will provide complimentary Bike Transport on a separate truck to the Niagara Falls site. All bikes will be secured overnight with 24 hour security. ]]></french>
@@ -186,6 +199,8 @@ Shuttle Drop Off: Exhibition Place (Enercare), Parking Lot 2 - 200 Princes' Boul
         <english><![CDATA[I would like to book bike transport]]></english>
         <french><![CDATA[I would like to book bike transport]]></french>
     </text>
+
+
     <text>
         <english><![CDATA[Please select a route]]></english>
         <french><![CDATA[Please select a route]]></french>
