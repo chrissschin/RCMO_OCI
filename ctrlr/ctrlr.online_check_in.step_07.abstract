@@ -94,7 +94,7 @@ function ctrlr_online_check_in_action_step_07(&$env,&$msgs,&$out,$CRUD=FALSE){
                     '-TXT-RENEW-YOUR-',
                     '-TXT-PRE-REGISTER-NOW-',
                     '-TXT-FUNDRAISING-MINIMUM-',
-#                    '-TXT-UPSELL-PRE-REGISTER-2-',
+                    '-TXT-UPSELL-PRE-REGISTER-2-',
                     '-TXT-UPSELL-PRE-REGISTER-1-',
                     '-TXT-UPSELL-PRE-REGISTER-0-',
                     '-TXT-UPSELL-NO-',
@@ -106,7 +106,7 @@ function ctrlr_online_check_in_action_step_07(&$env,&$msgs,&$out,$CRUD=FALSE){
                     lng($view['sxml']->text[++$t]),
                     lng($view['sxml']->text[++$t]),
                     lng($view['sxml']->text[++$t]),
-#                    lng($view['sxml']->text[++$t]),
+                    lng($view['sxml']->text[++$t]),
                     lng($view['sxml']->text[++$t]),
                     lng($view['sxml']->text[++$t]),
                     lng($view['sxml']->text[++$t]),
@@ -119,13 +119,13 @@ function ctrlr_online_check_in_action_step_07(&$env,&$msgs,&$out,$CRUD=FALSE){
             # Replace data placeholders with values
             $view['mark_up']=str_replace(
                 array(
-#                    'name="upsell_option" value="_UPSELL_PRE_REGISTER_2_"',
+                    'name="upsell_option" value="_UPSELL_PRE_REGISTER_2_"',
                     'name="upsell_option" value="_UPSELL_PRE_REGISTER_1_"',
                     'name="upsell_option" value="_UPSELL_PRE_REGISTER_0_"',
                     'name="upsell_option" value="No"'
                 ),
                 array(
-#                    ('name="upsell_option" value="'.$env['API']['SURVEY']['UPSELL'][2].'"'.((string)@$step_07['upsell_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][2]?' checked="checked"':'')),
+                    ('name="upsell_option" value="'.$env['API']['SURVEY']['UPSELL'][2].'"'.((string)@$step_07['upsell_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][2]?' checked="checked"':'')),
                     ('name="upsell_option" value="'.$env['API']['SURVEY']['UPSELL'][1].'"'.((string)@$step_07['upsell_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][1]?' checked="checked"':'')),
                     ('name="upsell_option" value="'.$env['API']['SURVEY']['UPSELL'][0].'"'.((string)@$step_07['upsell_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][0]?' checked="checked"':'')),
                     ('name="upsell_option" value="No"'.($step_07['upsell_no_checked']?' checked="checked"':''))
