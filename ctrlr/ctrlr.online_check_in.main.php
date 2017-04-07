@@ -92,7 +92,7 @@ function ctrlr_online_check_in_pub_main(&$env){
         
         $env['API']['SURVEY']['UPSELL'][0]=1422; # Upsell Item: Pre-Registration for $25
         $env['API']['SURVEY']['UPSELL'][1]=1421; # Upsell Item: Pre-Registration for $175
-#        $env['API']['SURVEY']['UPSELL'][2]=1442; # Upsell Item: Pre-Registration for $250
+        $env['API']['SURVEY']['UPSELL'][2]=1442; # Upsell Item: Pre-Registration for $250
         $env['API']['SURVEY']['UPSELL'][3]=3; # XS (chest size 32-34")
         $env['API']['SURVEY']['UPSELL'][4]=4; # S (chest size 34-36")
         $env['API']['SURVEY']['UPSELL'][5]=5; # M (chest size 38-40")
