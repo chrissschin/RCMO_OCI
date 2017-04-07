@@ -251,8 +251,10 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                 array(
                     '_EMERGENCY_NAME_',
                     '_EMERGENCY_PHONE_',
-                    ('name="cancer_survivor"'),
-                    ('name="vegetarian_meal"'),
+                    ('name="cancer_survivor" value="on"'),
+                    ('name="cancer_survivor" value="off"'),
+                    ('name="vegetarian_meal" value="on"'),
+                    ('name="vegetarian_meal" value="off"'),
 //<!-- Begin adding years question -->
                     '_YEARS_',
 //<!-- Begin adding Jersey question -->
@@ -265,18 +267,28 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                     ('name="jersey_option" value="_JERSEY_PRE_REGISTER_1_"'),
                     ('name="jersey_option" value="_JERSEY_PRE_REGISTER_0_"'),
 //<!-- Begin adding Shuttle question -->
-                    ('name="shuttle1" value="-TXT-Q1-SHUTTLE1-"'),
-                    ('name="shuttle2" value="-TXT-Q2-SHUTTLE1-"'),
-                    ('name="shuttle3" value="-TXT-Q3-SHUTTLE1-"'),
-                    ('name="shuttle4" value="-TXT-Q4-SHUTTLE1-"'),
-                    ('name="shuttle5" value="-TXT-Q5-SHUTTLE1-"'),
-                    ('name="shuttle6" value="-TXT-Q6-SHUTTLE1-"')
+                    ('name="shuttle1" value="on"'),
+                    ('name="shuttle1" value="off"')/*
+,
+                    ('name="shuttle2" value="on"'),
+                    ('name="shuttle2" value="off"'),
+                    ('name="shuttle3" value="on"'),
+                    ('name="shuttle3" value="off"'),
+                    ('name="shuttle4" value="on"'),
+                    ('name="shuttle4" value="off"'),
+                    ('name="shuttle5" value="on"'),
+                    ('name="shuttle5" value="off"'),
+                    ('name="shuttle6" value="on"'),
+                    ('name="shuttle6" value="off"')
+*/
                 ),
                 array(
                     @$env['request'][$gr_idx]['response']['sxml']->registration->emergencyName,
                     @$env['request'][$gr_idx]['response']['sxml']->registration->emergencyPhone,
-                    ('name="cancer_survivor"'.(strtoupper(@$step_03['cancer_survivor'][0]->responseValue)==='YES'?' checked="checked"':'')),
-                    ('name="vegetarian_meal"'.(strtoupper(@$step_03['vegetarian_meal'][0]->responseValue)==='YES'?' checked="checked"':'')),
+                    ('name="cancer_survivor" value="on"'.(strtoupper(@$step_03['cancer_survivor'][0]->responseValue)==='YES'?' checked="checked"':'')),
+                    ('name="cancer_survivor" value="off"'.(strtoupper(@$step_03['cancer_survivor'][0]->responseValue)==='NO'?' checked="checked"':'')),
+                    ('name="vegetarian_meal" value="on"'.(strtoupper(@$step_03['vegetarian_meal'][0]->responseValue)==='YES'?' checked="checked"':'')),
+                    ('name="vegetarian_meal" value="off"'.(strtoupper(@$step_03['vegetarian_meal'][0]->responseValue)==='NO'?' checked="checked"':'')),
 //<!-- Begin adding years question -->
                     @$step_03['years'][0]->responseValue,
 //<!-- Begin adding Jersey question -->
@@ -288,12 +300,18 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                     ('name="jersey_option" value="'.$env['API']['SURVEY']['UPSELL'][8].'"'.((string)@$step_03['jersey_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][8]?' checked="checked"':'')),
                     ('name="jersey_option" value="'.$env['API']['SURVEY']['UPSELL'][9].'"'.((string)@$step_03['jersey_value'][0]->responseValue===(string)$env['API']['SURVEY']['UPSELL'][9]?' checked="checked"':'')),
 //<!-- Begin adding Shuttle question -->
-                    ('name="shuttle1" value="'.$env['API']['SURVEY']['QUESTION'][11].'"'.((string)@$step_03['shuttle1_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][11]?' checked="checked"':'')),
-                    ('name="shuttle2" value="'.$env['API']['SURVEY']['QUESTION'][12].'"'.((string)@$step_03['shuttle2_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][12]?' checked="checked"':'')),
-                    ('name="shuttle3" value="'.$env['API']['SURVEY']['QUESTION'][13].'"'.((string)@$step_03['shuttle3_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][13]?' checked="checked"':'')),
-                    ('name="shuttle4" value="'.$env['API']['SURVEY']['QUESTION'][14].'"'.((string)@$step_03['shuttle4_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][14]?' checked="checked"':'')),
-                    ('name="shuttle5" value="'.$env['API']['SURVEY']['QUESTION'][15].'"'.((string)@$step_03['shuttle5_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][15]?' checked="checked"':'')),
-                    ('name="shuttle6" value="'.$env['API']['SURVEY']['QUESTION'][16].'"'.((string)@$step_03['shuttle6_value'][0]->responseValue===(string)$env['API']['SURVEY']['QUESTION'][16]?' checked="checked"':''))
+                    ('name="shuttle1" value="on"'.(strtoupper(@$step_03['shuttle1'][0]->responseValue)==='YES'?' checked="checked"':'')),
+                    ('name="shuttle1" value="off"'.(strtoupper(@$step_03['shuttle1'][0]->responseValue)==='NO'?' checked="checked"':'')),
+                    ('name="shuttle2" value="on"'.(strtoupper(@$step_03['shuttle2'][0]->responseValue)==='YES'?' checked="checked"':'')),
+                    ('name="shuttle2" value="off"'.(strtoupper(@$step_03['shuttle2'][0]->responseValue)==='NO'?' checked="checked"':'')),
+                    ('name="shuttle3" value="on"'.(strtoupper(@$step_03['shuttle3'][0]->responseValue)==='YES'?' checked="checked"':'')),
+                    ('name="shuttle3" value="off"'.(strtoupper(@$step_03['shuttle3'][0]->responseValue)==='NO'?' checked="checked"':'')),
+                    ('name="shuttle4" value="on"'.(strtoupper(@$step_03['shuttle4'][0]->responseValue)==='YES'?' checked="checked"':'')),
+                    ('name="shuttle4" value="off"'.(strtoupper(@$step_03['shuttle4'][0]->responseValue)==='NO'?' checked="checked"':'')),
+                    ('name="shuttle5" value="on"'.(strtoupper(@$step_03['shuttle5'][0]->responseValue)==='YES'?' checked="checked"':'')),
+                    ('name="shuttle5" value="off"'.(strtoupper(@$step_03['shuttle5'][0]->responseValue)==='NO'?' checked="checked"':'')),
+                    ('name="shuttle6" value="on"'.(strtoupper(@$step_03['shuttle6'][0]->responseValue)==='YES'?' checked="checked"':'')),
+                    ('name="shuttle6" value="off"'.(strtoupper(@$step_03['shuttle6'][0]->responseValue)==='NO'?' checked="checked"':''))
                 ),
                 $view['mark_up']
             );
