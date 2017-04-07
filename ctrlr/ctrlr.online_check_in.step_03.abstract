@@ -268,8 +268,7 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                     ('name="jersey_option" value="_JERSEY_PRE_REGISTER_0_"'),
 //<!-- Begin adding Shuttle question -->
                     ('name="shuttle1" value="on"'),
-                    ('name="shuttle1" value="off"')/*
-,
+                    ('name="shuttle1" value="off"'),
                     ('name="shuttle2" value="on"'),
                     ('name="shuttle2" value="off"'),
                     ('name="shuttle3" value="on"'),
@@ -280,7 +279,6 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                     ('name="shuttle5" value="off"'),
                     ('name="shuttle6" value="on"'),
                     ('name="shuttle6" value="off"')
-*/
                 ),
                 array(
                     @$env['request'][$gr_idx]['response']['sxml']->registration->emergencyName,
