@@ -77,18 +77,19 @@ function ctrlr_online_check_in_pub_main(&$env){
         $env['API']['AUTH']['FIELD']='sso_auth_token';
         $env['API']['AUTH']['TOKEN']=@$env['$_get']['auth'];
 
-        $env['API']['SURVEY']['ID']=81414;
-        $env['API']['SURVEY']['QUESTION'][0]=84780; # Cancer Survivor
-        $env['API']['SURVEY']['QUESTION'][1]=84781; # Vegetarian
-        $env['API']['SURVEY']['QUESTION'][2]=84770; # Health Insurance Policy Name
-        $env['API']['SURVEY']['QUESTION'][3]=84771; # Health Insurance Policy Number
-        $env['API']['SURVEY']['QUESTION'][4]=84768; # Waiver Full Name
-        $env['API']['SURVEY']['QUESTION'][5]=84769; # Is 18 years old or above
-        $env['API']['SURVEY']['QUESTION'][6]=84772; # Upsell Accepted
-        $env['API']['SURVEY']['QUESTION'][7]=84862; # Hidden Upsell Value
-        $env['API']['SURVEY']['QUESTION'][8]=84863; # Hidden Safety Video Watched
-        $env['API']['SURVEY']['QUESTION'][9]=84767; # Years Ridden
-        $env['API']['SURVEY']['QUESTION'][10]=84946; # Jersey Size
+        $env['API']['SURVEY']['ID']=82576;
+        $env['API']['SURVEY']['QUESTION'][0]=86370; # Cancer Survivor
+        $env['API']['SURVEY']['QUESTION'][1]=86371; # Vegetarian
+        $env['API']['SURVEY']['QUESTION'][2]=86360; # Health Insurance Policy Name
+        $env['API']['SURVEY']['QUESTION'][3]=86361; # Health Insurance Policy Number
+        $env['API']['SURVEY']['QUESTION'][4]=86358; # Waiver Full Name
+        $env['API']['SURVEY']['QUESTION'][5]=86359; # Is 18 years old or above
+        $env['API']['SURVEY']['QUESTION'][6]=86362; # Upsell Accepted
+        $env['API']['SURVEY']['QUESTION'][7]=86372; # Hidden Upsell Value
+        $env['API']['SURVEY']['QUESTION'][8]=86373; # Hidden Safety Video Watched
+        $env['API']['SURVEY']['QUESTION'][9]=86357; # Years Ridden
+        $env['API']['SURVEY']['QUESTION'][10]=86374; # Jersey Size
+        
         $env['API']['SURVEY']['UPSELL'][0]=1422; # Upsell Item: Pre-Registration for $25
         $env['API']['SURVEY']['UPSELL'][1]=1421; # Upsell Item: Pre-Registration for $175
 #        $env['API']['SURVEY']['UPSELL'][2]=1442; # Upsell Item: Pre-Registration for $250
@@ -100,12 +101,14 @@ function ctrlr_online_check_in_pub_main(&$env){
         $env['API']['SURVEY']['UPSELL'][8]=8; # XXL (chest size 50-52")
         $env['API']['SURVEY']['UPSELL'][9]=9; # XXXL
 		
-        $env['API']['SURVEY']['QUESTION'][11]=84947; # Shuttle Q1
-        $env['API']['SURVEY']['QUESTION'][12]=84948; # Shuttle Q2
-        $env['API']['SURVEY']['QUESTION'][13]=84949; # Shuttle Q3
-        $env['API']['SURVEY']['QUESTION'][14]=84950; # Shuttle Q4
-        $env['API']['SURVEY']['QUESTION'][15]=84951; # Shuttle Q5
-        $env['API']['SURVEY']['QUESTION'][16]=84952; # Shuttle Q6
+        $env['API']['SURVEY']['QUESTION'][11]=86375; # Shuttle Q1
+        $env['API']['SURVEY']['QUESTION'][12]=86376; # Shuttle Q2
+        $env['API']['SURVEY']['QUESTION'][13]=86377; # Shuttle Q3
+        $env['API']['SURVEY']['QUESTION'][14]=86378; # Shuttle Q4
+        $env['API']['SURVEY']['QUESTION'][15]=86379; # Shuttle Q5
+        $env['API']['SURVEY']['QUESTION'][16]=86380; # Shuttle Q6
+        
+        $env['API']['SURVEY']['QUESTION'][17]=86457; # Route Choice
 
         $env['API']['PARTICIPATION']['TYPE']['CREW']=1732;
 
