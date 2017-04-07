@@ -186,5 +186,21 @@ Shuttle Drop Off: Exhibition Place (Enercare), Parking Lot 2 - 200 Princes' Boul
         <english><![CDATA[I would like to book bike transport]]></english>
         <french><![CDATA[I would like to book bike transport]]></french>
     </text>
+    <text>
+        <english><![CDATA[Please select a route]]></english>
+        <french><![CDATA[Please select a route]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Toronto to Niagara (Classic Route)]]></english>
+        <french><![CDATA[Toronto to Niagara (Classic Route)]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Toronto to Niagara + 30 extra km (Classic Plus)]]></english>
+        <french><![CDATA[Toronto to Niagara + 30 extra km (Classic Plus)]]></french>
+    </text>
+    <text>
+        <english><![CDATA[Niagara to Niagara (Niagara Turnaround)]]></english>
+        <french><![CDATA[Niagara to Niagara (Niagara Turnaround)]]></french>
+    </text>
 </step>
 
