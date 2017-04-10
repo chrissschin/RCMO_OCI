@@ -110,6 +110,8 @@ function ctrlr_online_check_in_pub_main(&$env){
         
         $env['API']['SURVEY']['QUESTION'][17]=86457; # Route Choice
 
+		$env['API']['SURVEY']['QUESTION'][18]=86459; # Safety Rider
+		
         $env['API']['PARTICIPATION']['TYPE']['CREW']=1732;
 
         $env['data']['oci']['use_team_funds']=false;

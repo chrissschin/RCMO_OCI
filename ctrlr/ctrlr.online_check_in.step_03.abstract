@@ -44,7 +44,8 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                     ('question_'.$env['API']['SURVEY']['QUESTION'][14])=>(strtoupper(@$env['$_post']['shuttle4'])==='ON'?'Yes':'No'),
                     ('question_'.$env['API']['SURVEY']['QUESTION'][15])=>(strtoupper(@$env['$_post']['shuttle5'])==='ON'?'Yes':'No'),
                     ('question_'.$env['API']['SURVEY']['QUESTION'][16])=>(strtoupper(@$env['$_post']['shuttle6'])==='ON'?'Yes':'No'),
-					'route'=>$env['$_post']['route']
+					'route'=>$env['$_post']['route'],
+					('question_'.$env['API']['SURVEY']['QUESTION'][18])=>(strtoupper(@$env['$_post']['shuttle6'])==='ON'?'Yes':'No')
                     
                 )
             );
@@ -79,7 +80,9 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                         ('question_'.$env['API']['SURVEY']['QUESTION'][15])=>(strtoupper(@$env['$_post']['shuttle5'])==='ON'?'Yes':'No'),
                         ('question_'.$env['API']['SURVEY']['QUESTION'][16])=>(strtoupper(@$env['$_post']['shuttle6'])==='ON'?'Yes':'No'),
                         //<!-- Begin adding route question -->
-						('question_'.$env['API']['SURVEY']['QUESTION'][17])=>$env['$_post']['route']
+						('question_'.$env['API']['SURVEY']['QUESTION'][17])=>$env['$_post']['route'],
+						//safety rider
+						('question_'.$env['API']['SURVEY']['QUESTION'][18])=>(strtoupper(@$env['$_post']['safety_rider'])==='ON'?'Yes':'No')
                     )
                 );
 
@@ -132,6 +135,9 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                     ('question_'.$env['API']['SURVEY']['QUESTION'][16])=>'TRUE',
                     //<!-- Begin adding route question -->
                     ('question_'.$env['API']['SURVEY']['QUESTION'][17])=>'TRUE',
+                    //safety rider
+                    ('question_'.$env['API']['SURVEY']['QUESTION'][18])=>'TRUE',
+                    
                     'requested_only'=>'TRUE'
                 )
             );
@@ -165,6 +171,9 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
 
 //<!-- Begin adding route question -->
             $step_03['route']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][17].'\']'):NULL);
+            
+            //safety rider
+            $step_03['safety_rider']=(is_callable(array(@$env['request'][$gsr_idx]['response']['sxml'],'xpath'))?@$env['request'][$gsr_idx]['response']['sxml']->xpath('/convio:getSurveyResponsesResponse/convio:responses[convio:questionId=\''.$env['API']['SURVEY']['QUESTION'][18].'\']'):NULL);
             
             # Replace text placeholders with entries from the step view
             $view['mark_up']=str_replace(
@@ -298,7 +307,9 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                     ('name="shuttle5" value="off"'),
                     ('name="shuttle6" value="on"'),
                     ('name="shuttle6" value="off"'),
-                    '_ROUTE_'
+                    '_ROUTE_',
+                    ('name="safety_rider" value="on"'),
+                    ('name="safety_rider" value="off"')
                 ),
                 array(
                     @$env['request'][$gr_idx]['response']['sxml']->registration->emergencyName,
@@ -330,7 +341,12 @@ function ctrlr_online_check_in_action_step_03(&$env,&$msgs,&$out,$CRUD=FALSE){
                     ('name="shuttle5" value="off"'.(strtoupper(@$step_03['shuttle5'][0]->responseValue)==='NO'?' checked="checked"':'')),
                     ('name="shuttle6" value="on"'.(strtoupper(@$step_03['shuttle6'][0]->responseValue)==='YES'?' checked="checked"':'')),
                     ('name="shuttle6" value="off"'.(strtoupper(@$step_03['shuttle6'][0]->responseValue)==='NO'?' checked="checked"':'')),
-                    @$step_03['route'][0]->responseValue
+                    
+                    //route question
+                    @$step_03['route'][0]->responseValue,
+                    
+                    ('name="safety_rider" value="on"'.(strtoupper(@$step_03['safety_rider'][0]->responseValue)==='YES'?' checked="checked"':'')),
+                    ('name="safety_rider" value="off"'.(strtoupper(@$step_03['safety_rider'][0]->responseValue)==='NO'?' checked="checked"':''))
                 ),
                 $view['mark_up']
             );
