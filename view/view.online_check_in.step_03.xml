@@ -89,10 +89,10 @@
     </text>
 <!-- Begin adding Shuttle question -->
     <text>
-        <english><![CDATA[<strong>Friday June 9th Shuttles from Toronto to Niagara Falls</strong><br>Only riders with their name on the roster will be guaranteed a seat on the Friday evening shuttles; all other participants will be placed on standby.<br>
+        <english><![CDATA[<strong>Friday July 7th Shuttles from Toronto to Niagara Falls</strong><br>Only riders with their name on the roster will be guaranteed a seat on the Friday evening shuttles; all other participants will be placed on standby.<br>
 Shuttle Departs: Exhibition Place Parking Lot 2, 200 Princes’ Boulevard Toronto, ON M6K 3C3<br>
 Shuttle Drop Off: Niagara Falls Host Hotel, Marriott on the Falls<br>]]></english>
-        <french><![CDATA[<strong>Friday June 9th Shuttles from Toronto to Niagara Falls</strong><br>Only riders with their name on the roster will be guaranteed a seat on the Friday evening shuttles; all other participants will be placed on standby.<br>
+        <french><![CDATA[<strong>Friday July 7th Shuttles from Toronto to Niagara Falls</strong><br>Only riders with their name on the roster will be guaranteed a seat on the Friday evening shuttles; all other participants will be placed on standby.<br>
 Shuttle Departs: Exhibition Place Parking Lot 2, 200 Princes’ Boulevard Toronto, ON M6K 3C3<br>
 Shuttle Drop Off: Niagara Falls Host Hotel, Marriott on the Falls<br>]]></french>
     </text>
@@ -101,13 +101,9 @@ Shuttle Drop Off: Niagara Falls Host Hotel, Marriott on the Falls<br>]]></french
         <french><![CDATA[]]></french>
     </text>
     <text>
-<<<<<<< HEAD
         <english><![CDATA[I require a shuttle from Toronto to Niagara on Friday departing at 1:30p.m.]]></english>
         <french><![CDATA[I require a shuttle from Toronto to Niagara on Friday departing at 1:30p.m.]]></french>
-=======
-        <english><![CDATA[Do you require shuttle from Toronto to Niagara departing at 1:30 p.m. ]]></english>
-        <french><![CDATA[Do you require shuttle from Toronto to Niagara departing at 1:30 p.m. ]]></french>
->>>>>>> content fixes
+
     </text>
 
     <text>
